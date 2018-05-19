@@ -1,0 +1,4 @@
+mergeable:
+  approvals:
+    required:
+      reviewers: ['shine2lay', 'shineTest']
