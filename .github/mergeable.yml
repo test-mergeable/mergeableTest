@@ -1,4 +1,2 @@
 mergeable:
-  approvals:
-    required:
-      reviewers: ['shine2lay', 'shineTest']
+  assignee: 1
