@@ -1,8 +1,8 @@
 mergeable:
   pull_requests:
     assignee: 1
-    project: `First Project|Second Project`
-    milestone: `Test Milestone`
+    project: 'First Project|Second Project'
+    milestone: `Test Milestone'
   issues:
     assignee: 1
     label: 'WIP'
