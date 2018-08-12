@@ -5,6 +5,6 @@ mergeable:
         regex: 'wip'
     label:
       must_include:
-        regex: 'A'
+        regex: 'Label A'
       must_exclude:
-        regex: 'B'
+        regex: 'Label B'
