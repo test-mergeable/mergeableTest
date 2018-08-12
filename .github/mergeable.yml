@@ -1,14 +1,10 @@
 mergeable:
   pull_requests:
+    title:
+      must_exclude:
+        regex: 'wip'
     label:
-      or:
-        - and:
-          - must_include:
-              regex: 'release notes: yes'
-              message: 'Please include release notes: yes'
-          - must_include:
-              regex: 'lang\/core|lang\/c\+\+|lang\/c#'
-              message: 'Please include a language label'
-        - must_include:
-            regex: 'release notes: no'
-            message: 'Please include release notes: no'
+      must_include:
+        regex: 'A'
+      must_exclude:
+        regex: 'B'
