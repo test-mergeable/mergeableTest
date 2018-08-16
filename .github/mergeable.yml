@@ -8,3 +8,6 @@ mergeable:
         regex: 'Label A'
       must_exclude:
         regex: 'Label B'
+    description:
+      no_empty:
+        enabled: true
