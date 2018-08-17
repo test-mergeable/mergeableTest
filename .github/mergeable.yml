@@ -11,3 +11,5 @@ mergeable:
     description:
       no_empty:
         enabled: true
+    dependent:
+      file: ['abc.js', 'def.js']
