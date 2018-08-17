@@ -13,3 +13,6 @@ mergeable:
         enabled: true
     dependent:
       files: ['abc.js', 'def.js']
+    milestone:
+      must_include:
+        regex: 'Version 1'
