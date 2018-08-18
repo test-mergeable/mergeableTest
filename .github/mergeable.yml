@@ -18,4 +18,4 @@ mergeable:
         regex: 'Version 1'
     approval:
       required:
-        reviewer: 'shine2lay'
+        reviewers: ['shine2lay']
