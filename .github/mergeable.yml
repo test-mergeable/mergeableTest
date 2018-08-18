@@ -19,3 +19,4 @@ mergeable:
     approval:
       required:
         reviewers: ['shine2lay', 'shinelay']
+        owners: true
