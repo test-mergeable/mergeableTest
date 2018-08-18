@@ -16,9 +16,6 @@ mergeable:
     milestone:
       must_include:
         regex: 'Version 1'
-    project:
-      must_include:
-        regex: 'Project 1'
     approval:
       required:
         reviewer: 'shine2lay'
