@@ -2,7 +2,21 @@ mergeable:
   pull_requests:
     title:
       must_exclude:
-        regex: 'wip'
+        regex: 'must_be_excluded_text'
+      must_include:
+        regex: 'must_be_included_text'
+      begins_with:
+        match: 'begins_with_text'
+      ends_with:
+        match: 'ends_with_text'
+      max:
+        count: 4
+      min:
+        count: 1
+      required:
+        reviewer: ['@shinelay']
+      no_empty:
+        enabled: true
     label:
       must_include:
         regex: 'Label A'
