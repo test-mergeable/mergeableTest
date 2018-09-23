@@ -9,10 +9,6 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
-      max:
-        count: 4
-      min:
-        count: 1
       no_empty:
         enabled: true
     label:
@@ -39,10 +35,6 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
-      max:
-        count: 4
-      min:
-        count: 1
       no_empty:
         enabled: true
     dependent:
@@ -56,10 +48,6 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
-      max:
-        count: 4
-      min:
-        count: 1
       no_empty:
         enabled: true
     project:
@@ -71,10 +59,6 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
-      max:
-        count: 4
-      min:
-        count: 1
       no_empty:
         enabled: true
     approval:
