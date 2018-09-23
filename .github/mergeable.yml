@@ -70,7 +70,7 @@ mergeable:
         reviewer: ['@shinelay']
       no_empty:
         enabled: true
-    projects:
+    project:
       must_exclude:
         regex: 'must_be_excluded_text'
       must_include:
