@@ -13,8 +13,6 @@ mergeable:
         count: 4
       min:
         count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     label:
@@ -30,8 +28,6 @@ mergeable:
         count: 4
       min:
         count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     description:
@@ -47,8 +43,6 @@ mergeable:
         count: 4
       min:
         count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     dependent:
@@ -66,8 +60,6 @@ mergeable:
         count: 4
       min:
         count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     project:
@@ -83,8 +75,6 @@ mergeable:
         count: 4
       min:
         count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     approval:
