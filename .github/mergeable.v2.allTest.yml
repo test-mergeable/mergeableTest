@@ -1,0 +1,97 @@
+mergeable:
+  - when: 'pull_request.*'
+      checks:
+        title:
+          must_exclude:
+            regex: 'must_be_excluded_text'
+          must_include:
+            regex: 'must_be_included_text'
+          begins_with:
+            match: 'begins_with_text'
+          ends_with:
+            match: 'ends_with_text'
+          max:
+            count: 4
+          min:
+            count: 1
+          required:
+            reviewer: ['@shinelay']
+          no_empty:
+            enabled: true
+        label:
+          must_exclude:
+            regex: 'must_be_excluded_text'
+          must_include:
+            regex: 'must_be_included_text'
+          begins_with:
+            match: 'begins_with_text'
+          ends_with:
+            match: 'ends_with_text'
+          max:
+            count: 4
+          min:
+            count: 1
+          required:
+            reviewer: ['@shinelay']
+          no_empty:
+            enabled: true
+        description:
+          must_exclude:
+            regex: 'must_be_excluded_text'
+          must_include:
+            regex: 'must_be_included_text'
+          begins_with:
+            match: 'begins_with_text'
+          ends_with:
+            match: 'ends_with_text'
+          max:
+            count: 4
+          min:
+            count: 1
+          required:
+            reviewer: ['@shinelay']
+          no_empty:
+            enabled: true
+        dependent:
+          files: ['abc.js', 'def.js']
+        milestone:
+          must_exclude:
+            regex: 'must_be_excluded_text'
+          must_include:
+            regex: 'must_be_included_text'
+          begins_with:
+            match: 'begins_with_text'
+          ends_with:
+            match: 'ends_with_text'
+          max:
+            count: 4
+          min:
+            count: 1
+          required:
+            reviewer: ['@shinelay']
+          no_empty:
+            enabled: true
+        project:
+          must_exclude:
+            regex: 'must_be_excluded_text'
+          must_include:
+            regex: 'must_be_included_text'
+          begins_with:
+            match: 'begins_with_text'
+          ends_with:
+            match: 'ends_with_text'
+          max:
+            count: 4
+          min:
+            count: 1
+          required:
+            reviewer: ['@shinelay']
+          no_empty:
+            enabled: true
+        approval:
+          required:
+            reviewers: ['shine2lay', 'shinelay']
+            owners: true
+      pass:
+      fail:
+      error:
