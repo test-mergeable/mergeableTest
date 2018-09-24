@@ -39,10 +39,22 @@ mergeable:
       no_empty:
         enabled: true
     label:
+      and:
+        - begins_with:
+            match: 'begins_with_text'
+        - ends_with:
+            match: 'ends_with_text'
+      or:
+        - must_include:
+            regex: 'must_be_included_text'
+        - begins_with:
+            match: 'begins_with_text'
       must_exclude:
         regex: 'must_be_excluded_text'
       must_include:
         regex: 'must_be_included_text'
+      required:
+        reviewers: ['shine2lay', 'shinelay']
       begins_with:
         match: 'begins_with_text'
       ends_with:
