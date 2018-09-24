@@ -54,12 +54,28 @@ mergeable:
       no_empty:
         enabled: true
     description:
+      and:
+        - begins_with:
+            match: 'begins_with_text'
+        - ends_with:
+            match: 'ends_with_text'
+      or:
+        - must_include:
+            regex: 'must_be_included_text'
+        - begins_with:
+            match: 'begins_with_text'
       must_exclude:
         regex: 'must_be_excluded_text'
       must_include:
         regex: 'must_be_included_text'
       begins_with:
         match: 'begins_with_text'
+      max:
+        count: 4
+      min:
+        count: 1
+      required:
+        reviewers: ['shine2lay', 'shinelay']
       ends_with:
         match: 'ends_with_text'
       no_empty:
