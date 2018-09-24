@@ -127,6 +127,10 @@ mergeable:
       no_empty:
         enabled: true
     approval:
+      max:
+        count: 4
+      min:
+        count: 1
       required:
         reviewers: ['shineTest', 'shinelay']
         owners: true
