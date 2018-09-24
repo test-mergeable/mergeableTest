@@ -98,9 +98,9 @@ mergeable:
       ends_with:
         match: 'ends_with_text'
       max:
-              count: 4
-            min:
-              count: 1
+        count: 4
+      min:
+        count: 1
       no_empty:
         enabled: true
     project:
