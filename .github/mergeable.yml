@@ -42,8 +42,8 @@ mergeable:
       and:
         - begins_with:
             match: 'begins_with_text'
-        - ends_with:
-            match: 'ends_with_text'
+        - must_include:
+            regex: 'must_be_included_text'
       or:
         - must_include:
             regex: 'must_be_included_text'
