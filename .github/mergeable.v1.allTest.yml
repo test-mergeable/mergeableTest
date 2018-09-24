@@ -1,6 +1,16 @@
 mergeable:
   pull_requests:
     title:
+      and:
+        - begins_with:
+            match: 'begins_with_text'
+        - ends_with:
+            match: 'ends_with_text'
+      or:
+        - must_include:
+            regex: 'must_be_included_text'
+        - begins_with:
+            match: 'begins_with_text'
       must_exclude:
         regex: 'must_be_excluded_text'
       must_include:
@@ -9,19 +19,42 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
+    assignee:
+      and:
+        - max:
+            count: 4
+        - min:
+            count: 1
+      or:
+        - max:
+            count: 4
+        - min:
+            count: 1
+      required:
+        reviewers: ['shine2lay', 'shinelay']
       max:
         count: 4
       min:
         count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     label:
+      and:
+        - begins_with:
+            match: 'begins_with_text'
+        - must_include:
+            regex: 'must_be_included_text'
+      or:
+        - must_include:
+            regex: 'must_be_included_text'
+        - begins_with:
+            match: 'begins_with_text'
       must_exclude:
         regex: 'must_be_excluded_text'
       must_include:
         regex: 'must_be_included_text'
+      required:
+        reviewers: ['shine2lay', 'shinelay']
       begins_with:
         match: 'begins_with_text'
       ends_with:
@@ -30,11 +63,19 @@ mergeable:
         count: 4
       min:
         count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     description:
+      and:
+        - begins_with:
+            match: 'begins_with_text'
+        - ends_with:
+            match: 'ends_with_text'
+      or:
+        - must_include:
+            regex: 'must_be_included_text'
+        - begins_with:
+            match: 'begins_with_text'
       must_exclude:
         regex: 'must_be_excluded_text'
       must_include:
@@ -43,17 +84,21 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
-      max:
-        count: 4
-      min:
-        count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     dependent:
       files: ['abc.js', 'def.js']
     milestone:
+      and:
+        - begins_with:
+            match: 'begins_with_text'
+        - ends_with:
+            match: 'ends_with_text'
+      or:
+        - must_include:
+            regex: 'must_be_included_text'
+        - begins_with:
+            match: 'begins_with_text'
       must_exclude:
         regex: 'must_be_excluded_text'
       must_include:
@@ -62,12 +107,6 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
-      max:
-        count: 4
-      min:
-        count: 1
-      required:
-        reviewer: ['@shinelay']
       no_empty:
         enabled: true
     project:
@@ -79,15 +118,13 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
+      no_empty:
+        enabled: true
+    approval:
       max:
         count: 4
       min:
         count: 1
       required:
-        reviewer: ['@shinelay']
-      no_empty:
-        enabled: true
-    approval:
-      required:
-        reviewers: ['shine2lay', 'shinelay']
+        reviewers: ['shineTest', 'shinelay']
         owners: true
