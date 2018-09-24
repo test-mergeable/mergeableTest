@@ -97,6 +97,8 @@ mergeable:
         match: 'begins_with_text'
       ends_with:
         match: 'ends_with_text'
+      required:
+        reviewers: ['shine2lay', 'shinelay']
       max:
         count: 4
       min:
