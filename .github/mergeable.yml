@@ -36,6 +36,8 @@ mergeable:
         count: 4
       min:
         count: 1
+      no_empty:
+        enabled: true
     label:
       must_exclude:
         regex: 'must_be_excluded_text'
