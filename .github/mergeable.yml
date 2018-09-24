@@ -128,5 +128,5 @@ mergeable:
         enabled: true
     approval:
       required:
-        reviewers: ['shine2lay', 'shinelay']
+        reviewers: ['shineTest', 'shinelay']
         owners: true
