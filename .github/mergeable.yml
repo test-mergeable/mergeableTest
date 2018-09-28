@@ -3,4 +3,4 @@ mergeable:
     title:
       must_include:
         regex: `^\\(feat\\)|^\\(doc\\)|^\\(fix\\)`
-          message: `Title must have prefixes for the following: (feat), (doc), (fix)`
+        message: `Title must have prefixes for the following: (feat), (doc), (fix)`
