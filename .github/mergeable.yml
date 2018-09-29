@@ -1,1 +1,9 @@
 mergeable:
+  pull_requests:
+    stale:
+      days: 14
+      message: "This is PR is stale. Please follow up!"
+    title:
+      begins_with:
+        regex: '^\[Delivers|Finishes|\#\d{7,}'
+        message: 'Title must include a pivotal story tag and optionally an action (e.g. Delivers or Finishes)'
