@@ -4,6 +4,6 @@ mergeable:
       days: 14
       message: "This is PR is stale. Please follow up!"
     title:
-      begins_with:
-        match: '\[Delivers|Finishes|\#\d{7,}'
-        message: 'Title must include a pivotal story tag and optionally an action (e.g. Delivers or Finishes)'
+      must_include:
+        message: "Title must have prefixes for the following: (feat), (doc), (fix)"
+        regex: ^\\(feat\\)|^\\(doc\\)|^\\(fix\\)
