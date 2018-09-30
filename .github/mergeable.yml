@@ -5,5 +5,5 @@ mergeable:
       message: "This is PR is stale. Please follow up!"
     title:
       must_include:
-        message: "Title must have prefixes for the following: (feat), (doc), (fix)"
-        regex: ^\(feat\)|^\(doc\)|^\(fix\)
+        message: 'Title must include a pivotal story tag and optionally an action (e.g. Delivers or Finishes)'
+        regex: ^\[(Delivers|Finishes)?|(\#\d{7,})?\]
