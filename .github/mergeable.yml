@@ -2,7 +2,7 @@ mergeable:
   pull_requests:
     stale:
       days: 14
-      message: "This is PR is stale. Please follow up!"
+      message: "This is PR is stale. Please followup!"
     title:
       must_include:
         message: 'Title must include a pivotal story tag and optionally an action (e.g. Delivers or Finishes)'
