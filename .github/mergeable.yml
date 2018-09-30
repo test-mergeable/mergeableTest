@@ -6,4 +6,4 @@ mergeable:
     title:
       must_include:
         message: 'Title must include a pivotal story tag and optionally an action (e.g. Delivers or Finishes)'
-        regex: ^\[(Delivers|Finishes)?|(\#\d{7,})?\]
+        regex: ^\[(Delivers \#\d{7,}|Finishes \#\d{7,}|\#\d{7,})\]
