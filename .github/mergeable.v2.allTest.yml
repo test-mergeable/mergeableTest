@@ -129,6 +129,3 @@ mergeable:
           required:
             reviewers: ['shineTest', 'shinelay']
             owners: true
-      pass:
-      fail:
-      error:
