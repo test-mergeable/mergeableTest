@@ -1,6 +1,16 @@
+version: 2
 mergeable:
-  pull_requests:
-    title:
-      must_include:
-        message: 'Title must include a pivotal story tag and optionally an action (e.g. Delivers or Finishes)'
-        regex: ^\[(Delivers \#\d{7,}|Finishes \#\d{7,}|\#\d{7,})\]
+  - when: pull_request.*
+    validate:
+      - do: title
+        must_exclude:
+          regex: 'wip|work in progress'
+          message:
+            pass: 'Good: `wip|work in progress` is not in the title.'
+            fail: '`wip|work in progress` was found in the title'
+    pass:
+      - do: checks
+        status: success
+    fail:
+      - do: checks
+        status: failure
