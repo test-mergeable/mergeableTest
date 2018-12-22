@@ -54,7 +54,7 @@ mergeable:
       must_include:
         regex: 'must_be_included_text'
       required:
-        reviewers: ['shine2lay', 'shinelay']
+        reviewers: ['shine2lay']
       begins_with:
         match: 'begins_with_text'
       ends_with:
