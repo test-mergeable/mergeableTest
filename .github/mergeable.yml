@@ -31,7 +31,7 @@ mergeable:
         - min:
             count: 1
       required:
-        reviewers: ['shine2lay', 'shinelay']
+        reviewers: ['shine2lay']
       max:
         count: 4
       min:
