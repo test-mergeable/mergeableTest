@@ -126,5 +126,5 @@ mergeable:
       min:
         count: 1
       required:
-        reviewers: ['shineTest', 'shinelay']
+        reviewers: ['shineTest']
         owners: true
