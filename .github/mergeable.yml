@@ -122,7 +122,7 @@ mergeable:
         enabled: true
     approvals:
       max:
-        count: 4
+        count: 0
       min:
         count: 1
       required:
