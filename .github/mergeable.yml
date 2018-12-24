@@ -1,5 +1,5 @@
 mergeable:
-  pull_requests:
+  issues:
     title:
       and:
         - begins_with:
