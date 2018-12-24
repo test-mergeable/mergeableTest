@@ -1,5 +1,5 @@
 mergeable:
-  pull_requests:
+  issues:
     title:
       and:
         - begins_with:
@@ -31,7 +31,7 @@ mergeable:
         - min:
             count: 1
       required:
-        reviewers: ['shine2lay', 'shinelay']
+        reviewers: ['shine2lay']
       max:
         count: 4
       min:
@@ -54,7 +54,7 @@ mergeable:
       must_include:
         regex: 'must_be_included_text'
       required:
-        reviewers: ['shine2lay', 'shinelay']
+        reviewers: ['shine2lay']
       begins_with:
         match: 'begins_with_text'
       ends_with:
@@ -122,9 +122,9 @@ mergeable:
         enabled: true
     approvals:
       max:
-        count: 4
+        count: 1
       min:
         count: 1
       required:
-        reviewers: ['shineTest', 'shinelay']
+        reviewers: ['shineTest']
         owners: true
