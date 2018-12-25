@@ -109,17 +109,6 @@ mergeable:
         match: 'ends_with_text'
       no_empty:
         enabled: true
-    project:
-      must_exclude:
-        regex: 'must_be_excluded_text'
-      must_include:
-        regex: 'must_be_included_text'
-      begins_with:
-        match: 'begins_with_text'
-      ends_with:
-        match: 'ends_with_text'
-      no_empty:
-        enabled: true
     approvals:
       max:
         count: 1
