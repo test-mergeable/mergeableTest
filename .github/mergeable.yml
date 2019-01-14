@@ -1,32 +1,17 @@
 mergeable:
   pull_requests:
-    label:
-      must_include:
-        regex: ".+"
-        message: "The pull-request is not categorized using any label."
-      must_exclude:
-        regex: "^wip$"
-        message: "The pull-request is labelled as work in progress (WIP)."
+    # Minimum of 2 approvals is needed.
+    approvals: 2
+
+    # Regular expression to be tested on the title. Not mergeable when true.
     title:
-      must_exclude:
-        regex: "^WIP"
-        message: "The pull-request is titled as work in progress (WIP:)."
+      must_include:
+        regex: '^\[RealImage\/qube-wire#[0-9]*\]'
+        message: 'Title must begin with the format "[RealImage/qube-wire#<issue no.>"'
+      must_excluse:
+        regex: 'wip, fixes'
+        message: 'Title cannot have the keywords wip or fixes to be mergeable'
     description:
-      must_include:
-        regex: "^.{10,}"
-        message: 'The description must not be empty (at least 10 characters)!'
-    stale:
-      days: 10
-      message: 'There has not been any activity in the past 10 days. Is this still active?'
-  issues:
-    label:
-      must_include:
-        regex: ".+"
-        message: "The issue is not categorized using any label."
-    stale:
-      days: 30
-      message: 'There has not been any activity in the past month. Is there anything to follow-up?'
-    description:
-      must_include:
-        regex: "^.{10,}"
-        message: 'The description must not be empty (at least 10 characters)!'
+      no_empty:
+        enabled: false
+        message: 'Dont be lazy, add a description'
