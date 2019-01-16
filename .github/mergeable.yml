@@ -1,8 +1,20 @@
 mergeable:
   pull_requests:
-    title:
-      must_include:
-        regex: '^STAR-\d{4,8}: .*'
-        message: 'Title must be in the format - STAR-12345: Description of PR'
-    description:
-      no-empty: false
+    # Minimum of 5 approvals is needed.
+    approvals: 1
+
+    # Regular expression to be tested on the title. Not mergeable when true.
+    title: 'fixed'
+
+    # Only mergeable when milestone is as specified below.
+    milestone: 'version 1'
+
+    # Only mergeable when Project is as specified below
+    project: 'Alpha'
+
+    # exclude any of the mergeable validation above. A comma separated list. For example, the following will exclude validations for approvals and label.
+    exclude: 'approvals, label'
+
+  issues:
+    # Regular expression. In this example, whenever a issues has a label with the word 'wip'
+    label: 'wip|do not merge|experimental'
