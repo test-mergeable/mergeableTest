@@ -1,67 +1,8 @@
 mergeable:
   pull_requests:
-    stale:
-      days: 7
-      message: 'This is PR is stale. Please follow up @pelletencate & @kieranklaassen'
     title:
-      begins_with:
-        regex: 'Fix #[0-9]* - '
-        message: 'Title must have the following format: Fix #123 - Release note'
-
-    label:
       must_include:
-        regex: '^Review|dependencies'
-        message: 'Review label must be assigned'
-
-    milestone:
-      begins_with:
-        match: 'Sprint'
-        message: 'Please assign to current sprint'
-
+        regex: '^STAR-\d{4,8}: .*'
+        message: 'Title must be in the format - STAR-12345: Description of PR'
     description:
-      must_include:
-        regex: 'Author Review'
-        message: 'Include  Author Review'
-      must_include:
-        regex: 'Other Reviews'
-        message: 'Include Other Reviews'
-      must_include:
-        regex: 'Rollback'
-        message: 'Include Rollback assessment'
-      must_include:
-        regex: 'Zero-Downtime'
-        message: 'Include Zero downtime assessment'
-      must_exclude:
-        regex: '- [ ]'
-        message: 'Please complete all checkboxes'
-
-    assignee:
-      min: 1
-      max: 1
-      message: 'Assign this PR to the author'
-
-  issues:
-    label:
-      begins_with:
-        match: 'Feature'
-        message: 'Assign the Feature label'
-
-    milestone:
-      begins_with:
-        match: 'Sprint'
-        message: 'Please assign sprint'
-
-    description:
-      no_empty:
-        enabled: false
-        message: 'Please add required issue research'
-      must_include:
-        regex: 'As an? \w+, I want to .+'
-        message: 'Please add at least one user story with the format: As a user, I want to xxx'
-      must_include:
-        regex: '- \\[[ x]\\] .+'
-        message: 'Please add todos'
-
-    assignee:
-      min: 1
-      message: 'Please assign issue'
+      no-empty: false
