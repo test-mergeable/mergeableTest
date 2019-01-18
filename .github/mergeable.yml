@@ -1,33 +1,7 @@
 mergeable:
   pull_requests:
-    stale:
-      # number of days for a PR to be considered stale. A comment is posted when it is stale.
-      days: 20
-      # Optional property. When not specified the default is used. The default message is:
-      # There haven't been much activity here. This is stale. Is it still relevant? This is a friendly reminder to please resolve it. :-)
-      message: 'This PR is stale. Please follow up!'
-
-    # Regular expression to be tested on the title. Not mergeable when true.
-    title:
-      must_exclude:
-        regex: 'wip|dnm'
-        message: 'This PR is work in progress.'
-
-    # Match text against labels. Not mergeable when true.
-    label:
-      must_exclude:
-        regex: 'Do not merge'
-        message: 'This PR is work in progress.'
-
-    description:
-      no_empty:
-        enabled: false
-        message: 'PR description is required'
-
-    milestone: '([^\s]*)'
-
-    # approvals:
-    #   min: 1
-    #     message: 'Minimum of 1 approval is needed for this PR to be mergeable'
-    #   required:
-    #     reviewers: [ user1, user2 ]   # list of github usernames required to review
+    title: 'WIP'
+    exclude: 'approvals,description'
+    label: 'WIP|validation wanted|help wanted|needs work'
+  issues:
+    exclude: 'description'
