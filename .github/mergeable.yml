@@ -1,14 +1,25 @@
 mergeable:
   pull_requests:
+    approvals: 1
+    assignee: 1
+    description:
+      no-empty: true
+      must_exclude:
+        regex: 'Please explain briefly the changes you made here.'
     label:
-      or:
-        - and:
-            - must_include:
-                regex: 'release notes: yes'
-                message: 'Please include release note: yes'
-            - must_include:
-                regex: '^lang\/'
-                message: 'Please include a language label'
-        - must_include:
-            regex: 'release notes: no'
-            message: 'Please include release note: no'
+      must_exclude:
+        regex: '^(DO NOT MERGE YET|PR: unreviewed|PR: reviewed-changes-requested|more-testing-required)$'
+        message: 'Can not  merge with current labels attached.'
+      must_include:
+        regex: '^(PR: reviewed-approved)$'
+        message: 'Missing code review approval.'
+    stale:
+      days: 20
+      message: 'This is PR is stale. Please follow up!'
+    title:
+      must_exclude:
+        regex: 'wip'
+        message: 'This PR is work in progress.'
+      must_include:
+        regex: '^((feature|hotfix))\/(SM-.*)$'
+        message: 'Title must follow the pattern: {feature|hotfix}/{SM-.*}'
