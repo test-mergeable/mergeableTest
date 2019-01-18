@@ -1,7 +1,20 @@
-### abejfehr/retirement-visualizer (private=true) >
 mergeable:
   pull_requests:
-    description:
+    stale:
+      # number of days for a PR to be considered stale. A comment is posted when it is stale.
+      days: 30
+      # Optional property. When not specified the default is used. The default message is:
+      # There haven't been much activity here. This is stale. Is it still relevant? This is a friendly reminder to please resolve it. :-)
+      message: 'This is PR is stale. Please follow up!'
+    title:
+      must_include:
+        regex: '^.+:.+'
+        message: 'Title must follow the commit message convention.'
       must_exclude:
-        regex: '- \[ \]'
-        message: 'There are still things to check off!'
+        regex: 'wip'
+        message: 'This PR is work in progress.'
+
+    label:
+      must_exclude:
+        regex: 'wip|on hold'
+        message: 'This PR is work in progress.'
