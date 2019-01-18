@@ -1,13 +1,25 @@
-### FairFXGroup/willow-common (private=true) >
+### RealImage/apsara-ui (private=true) >
 mergeable:
   pull_requests:
+    label: "work in progress|do not merge|experimental|proof of concept"
+    title: "wip|dnm|exp|poc"
+    description:
+      no-empty:
+        enabled: true
+        message: "Add a brief overview of what this PR is for in the description!"
     stale:
-      # number of days for a PR to be considered stale. A comment is posted when it is stale.
-      days: 20
-      # Optional property. When not specified the default is used. The default message is:
-      # There hasn't been much activity here. This is stale. Is it still relevant? This is a friendly reminder to please resolve it. :-)
-      message: 'This is PR is stale (20 days without activity). Please follow up!'
-    title:
-      must_include:
-        regex: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)\(([a-zA-Z-]*)\): (?:([A-Z]{2,}-[1-9]{1}\d*|=>))\s([A-Z]{1}.+)$'
-        message: 'Title must follow conventional commits - e.g. feat(wc-config): WL-999999 Interesting commit message'
+      days: 15
+    assignee:
+      min: 1
+      max: 1
+      message: "Assign somebody to this PR! (Only one assignee is allowed)"
+    dependent:
+      files: ["package.json", "yarn.lock"] # list of files that all must be modified if one is modified
+      message: "Missing package.json or yarn lock file! Please commit both files!"
+    approvals:
+      min: 2
+      message: "Atleast two approvals required!"
+      required:
+        reviewers: [nileshr, arunmadhavan-g, mtamilcse92] # Because, why not :p
+        owners: false
+        message: "No approval from required approver!"
