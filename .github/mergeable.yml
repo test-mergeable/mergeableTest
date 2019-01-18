@@ -1,7 +1,14 @@
 mergeable:
   pull_requests:
-    title: 'WIP'
-    exclude: 'approvals,description'
-    label: 'WIP|validation wanted|help wanted|needs work'
-  issues:
-    exclude: 'description'
+    description:
+      no-empty: false
+    stale:
+      days: 14
+      message: "This is PR is stale. Please follow up!"
+    label:
+      must_include:
+        regex: "tested-on-android|tested-on-ios"
+        message: "Must have been tested on both Android and iOS before merging into master."
+      must_exclude:
+        regex: "wip"
+        message: "This PR is work in progress."
