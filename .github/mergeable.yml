@@ -1,35 +1,22 @@
-####################
-# Ginza Setup
-####################
 mergeable:
   pull_requests:
-    label: 'WiP|work in progress|do not merge|experimental|proof of concept'
-    description:
-      no-empty: true
     stale:
-      days: 30
-
+      # number of days for a PR to be considered stale. A comment is posted when it is stale.
+      days: 1
+      message: 'This is PR getting stale. Please follow up!  This is a friendly reminder to please resolve it. :-)'
     title:
-      #        must_include:
-      #          regex: `^\\(feat\\)|^\\(doc\\)|^\\(fix\\)`
-      #          message: `Title must have prefixes for the following: (feat), (doc), (fix)`
-      #        begins_with:
-      #          match: '(feat)|(doc)|(fix)|(other)'
-      #          message: 'Custom message...'
       must_exclude:
         regex: 'wip'
         message: 'This PR is work in progress.'
 
-  issues:
-    stale:
-      # number of days for an issue to be considered stale. A comment is posted when it is stale.
-      days: 30
-      # Optional property. When not specified the default is used. The default message is used.
-      message: 'This issue is stale. Please follow up!'
-    title:
-      #        must_include:
-      #          regex: `^\\(feat\\)|^\\(doc\\)|^\\(fix\\)`
-      #          message: `Title must have prefixes for the following: (feat), (doc), (fix)`
+    label:
       must_exclude:
         regex: 'wip'
         message: 'This PR is work in progress.'
+
+    approvals:
+      min: 2
+      message: 'Waiting on approvals...'
+      required:
+        reviewers: [ GLJeffery, kevnm67 ]   # list of github usernames required to review
+        message: 'Now we wait...'
