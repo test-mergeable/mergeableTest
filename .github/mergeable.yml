@@ -1,33 +1,12 @@
-### dtr-org/docs.unit-e.io (private=true) >
 mergeable:
   pull_requests:
-    label:
-      must_include:
-        regex: ".+"
-        message: "The pull-request is not categorized using any label."
-      must_exclude:
-        regex: "^wip$"
-        message: "The pull-request is labelled as work in progress (WIP)."
+    stale:
+      # number of days for a PR to be considered stale. A comment is posted when it is stale.
+      days: 20
+      # Optional property. When not specified the default is used. The default message is:
+      # There haven't been much activity here. This is stale. Is it still relevant? This is a friendly reminder to please resolve it. :-)
+      message: 'This PR is stale. Is it still relevant? Please follow up or close it!'
     title:
-      must_exclude:
-        regex: "^WIP"
-        message: "The pull-request is titled as work in progress (WIP:)."
-    description:
       must_include:
-        regex: "^.{10,}"
-        message: 'The description must not be empty (at least 10 characters)!'
-    stale:
-      days: 10
-      message: 'There has not been any activity in the past 10 days. Is this still active?'
-  issues:
-    label:
-      must_include:
-        regex: ".+"
-        message: "The issue is not categorized using any label."
-    stale:
-      days: 30
-      message: 'There has not been any activity in the past month. Is there anything to follow-up?'
-    description:
-      must_include:
-        regex: "^.{10,}"
-        message: 'The description must not be empty (at least 10 characters)!'
+        regex: '^(PE-[0-9]+[, ]*)+ - (Backend|Mobile|Web|Feature|Config|Analytics) >'
+        message: 'Title must have one of the following: Backend, Mobile, Web, Feature, Config'
