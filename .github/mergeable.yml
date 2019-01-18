@@ -5,14 +5,29 @@ mergeable:
       days: 20
       # Optional property. When not specified the default is used. The default message is:
       # There haven't been much activity here. This is stale. Is it still relevant? This is a friendly reminder to please resolve it. :-)
-      message: 'This is PR is stale. Please follow up!'
-    label:
-      must_include:
-        regex: 'staging|UAT OK'
-        message: 'Needs to be merged on Staging and have UAT complete'
+      message: 'This PR is stale. Please follow up!'
+
+    # Regular expression to be tested on the title. Not mergeable when true.
+    title:
       must_exclude:
-        regex: 'work in progress|do not merge|experimental|proof of concept|breaking change'
-        message: "This PR is still being worked on. OR it has a breaking change. Talk to another human before merging"
-    title: 'wip|dnm|exp|poc'
+        regex: 'wip|dnm'
+        message: 'This PR is work in progress.'
+
+    # Match text against labels. Not mergeable when true.
+    label:
+      must_exclude:
+        regex: 'Do not merge'
+        message: 'This PR is work in progress.'
+
     description:
-      no-empty: true
+      no_empty:
+        enabled: false
+        message: 'PR description is required'
+
+    milestone: '([^\s]*)'
+
+    # approvals:
+    #   min: 1
+    #     message: 'Minimum of 1 approval is needed for this PR to be mergeable'
+    #   required:
+    #     reviewers: [ user1, user2 ]   # list of github usernames required to review
