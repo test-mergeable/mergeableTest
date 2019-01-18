@@ -1,20 +1,13 @@
+### FairFXGroup/willow-common (private=true) >
 mergeable:
   pull_requests:
     stale:
       # number of days for a PR to be considered stale. A comment is posted when it is stale.
-      days: 30
+      days: 20
       # Optional property. When not specified the default is used. The default message is:
-      # There haven't been much activity here. This is stale. Is it still relevant? This is a friendly reminder to please resolve it. :-)
-      message: 'This is PR is stale. Please follow up!'
+      # There hasn't been much activity here. This is stale. Is it still relevant? This is a friendly reminder to please resolve it. :-)
+      message: 'This is PR is stale (20 days without activity). Please follow up!'
     title:
       must_include:
-        regex: '^.+:.+'
-        message: 'Title must follow the commit message convention.'
-      must_exclude:
-        regex: 'wip'
-        message: 'This PR is work in progress.'
-
-    label:
-      must_exclude:
-        regex: 'wip|on hold'
-        message: 'This PR is work in progress.'
+        regex: '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)\(([a-zA-Z-]*)\): (?:([A-Z]{2,}-[1-9]{1}\d*|=>))\s([A-Z]{1}.+)$'
+        message: 'Title must follow conventional commits - e.g. feat(wc-config): WL-999999 Interesting commit message'
