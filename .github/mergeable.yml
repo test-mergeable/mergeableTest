@@ -1,4 +1,3 @@
-### RealImage/apsara-ui (private=true) >
 mergeable:
   pull_requests:
     label: "work in progress|do not merge|experimental|proof of concept"
