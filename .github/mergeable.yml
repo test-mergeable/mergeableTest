@@ -1,15 +1,8 @@
 mergeable:
   pull_requests:
     title:
-      must_include:
-        regex: '^[A-Z]'
-      must_exclude:
-        regex: 'wip'
-        message: 'This PR is work in progress.'
-    description:
-      no_empty:
-        enabled: true
+      must_exclude: {regex: wip, message: 'This PR is work in progress.'}
     label:
-      must_include:
-        regex: '^area\/'
-        message: 'PR must belong to an area. Areas are labels prefixed with "area/"'
+      must_exclude: {regex: wip, message: 'Custom message. This PR is work in progress.'}
+    description:
+      must_exclude: {regex: WIP, message: 'Custom message. wip'}
