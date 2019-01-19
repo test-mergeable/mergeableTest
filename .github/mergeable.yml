@@ -1,24 +1,20 @@
 mergeable:
   pull_requests:
-    label: "work in progress|do not merge|experimental|proof of concept"
-    title: "wip|dnm|exp|poc"
-    description:
-      no-empty:
-        enabled: true
-        message: "Add a brief overview of what this PR is for in the description!"
     stale:
-      days: 15
-    assignee:
-      min: 1
-      max: 1
-      message: "Assign somebody to this PR! (Only one assignee is allowed)"
-    dependent:
-      files: ["package.json", "yarn.lock"] # list of files that all must be modified if one is modified
-      message: "Missing package.json or yarn lock file! Please commit both files!"
-    approvals:
-      min: 2
-      message: "Atleast two approvals required!"
-      required:
-        reviewers: [nileshr, arunmadhavan-g, mtamilcse92] # Because, why not :p
-        owners: false
-        message: "No approval from required approver!"
+      # A comment is psoted when a PR is stale
+      days: 20
+
+    title:
+      # Block if the title contains an of
+      must_exclude: 'wip|poc'
+      # Block if title does not match any of
+      must_include: '^(feat|doc|chore|fix|refactor|test)\(\w+\): .+$'
+
+    label:
+      # Block if it any of these labels are present
+      must_exclude: 'dontmerge|wip|blocked'
+
+    description:
+      # Block if no description
+      no_empty:
+        enabled: true
