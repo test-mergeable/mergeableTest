@@ -1,8 +1,9 @@
 mergeable:
   pull_requests:
     title:
-      must_exclude: {regex: wip, message: 'This PR is work in progress.'}
-    label:
-      must_exclude: {regex: wip, message: 'Custom message. This PR is work in progress.'}
-    description:
-      must_exclude: {regex: WIP, message: 'Custom message. wip'}
+      must_include:
+        message: "Title must begin with the following prefixes: feat:, fix: or chore:"
+        regex: "^feat:|^chore:|^fix:"
+      must_exclude:
+        message: "Title cannot include 'BREAKING CHANGE' as this will automatically trigger a major version release. Title cannot include chore(release): version x.x.x."
+        regex: "BREAKING CHANGE|chore\(release\):\sversion\s[0-9]+\.[0-9]+\.[0-9]+$.*"
