@@ -1,9 +1,32 @@
+version: 2
 mergeable:
-  pull_requests:
-    title:
-      must_include:
-        message: "Title must begin with the following prefixes: feat:, fix: or chore:"
-        regex: "^feat:|^chore:|^fix:"
-      must_exclude:
-        message: "Title cannot include 'BREAKING CHANGE' as this will automatically trigger a major version release. Title cannot include chore(release): version x.x.x."
-        regex: "BREAKING CHANGE|chore\(release\):\sversion\s[0-9]+\.[0-9]+\.[0-9]+$.*"
+  # Runs when any pull request event is fired (eg. opened, edited, etc)
+  - when: pull_request.*
+    validate:
+      - do: title
+        # Block if the title contains an of
+        must_exclude:
+          regex: 'wip|poc'
+        # Block if title does not match any of
+        must_include:
+          regex: '^(feat|doc|chore|fix|refactor|test)\(\w+\): .+$'
+      - do: label:
+        # Block if it any of these labels are present
+        must_exclude:
+          regex: 'dontmerge|wip|blocked'
+      - do: description
+        # Block if no description
+        no_empty:
+          enabled: true
+
+  # Runs on an interval
+  - when: schedule.repository
+    validate:
+      - do: stale
+        # A comment is posted when a PR is stale
+        days: 7
+        type: pull_request
+    pass:
+      - do: comment
+        payload:
+          body: This is rotting. Either update and merge or close it.
