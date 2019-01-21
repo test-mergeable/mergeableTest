@@ -10,7 +10,7 @@ mergeable:
         # Block if title does not match any of
         must_include:
           regex: '^(feat|doc|chore|fix|refactor|test)\(\w+\): .+$'
-      - do: label:
+      - do: label
         # Block if it any of these labels are present
         must_exclude:
           regex: 'dontmerge|wip|blocked'
