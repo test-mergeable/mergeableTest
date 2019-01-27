@@ -4,5 +4,5 @@ mergeable:
     validate:
       - do: title
         begins_with:
-          match: 'feat', 'bug'
+          match: ['feat', 'bug']
           message: 'Type is required....'
