@@ -4,3 +4,6 @@ mergeable:
     validate:
       - do: check_merged
         enabled: true
+    pass:
+      - do: re_run_checks
+        select: all
