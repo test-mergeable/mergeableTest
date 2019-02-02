@@ -1,8 +1,6 @@
 version: 2
 mergeable:
-  - when: pull_request.*, pull_request_review.*
+  - when: pull_request.closed
     validate:
-      - do: title
-        begins_with:
-          match: ['feat', 'bug']
-          message: 'Type is required....'
+      - do: check_merged
+        enabled: true
