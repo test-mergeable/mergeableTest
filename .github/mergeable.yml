@@ -3,7 +3,8 @@ mergeable:
   - when: pull_request.*
     validate:
       - do: approvals
-        reviewers: ['shineTest']
+        required:
+          reviewers: ['shineTest']
     fail:
       - do: request_review
         reviewers: ['shineTest']
