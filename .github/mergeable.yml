@@ -1,6 +1,6 @@
 version: 2
 mergeable:
-  - when: pull_request.opened
+  - when: pull_request.*
     validate:
       - do: approvals
         reviewers: ['shineTest']
