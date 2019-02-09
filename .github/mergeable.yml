@@ -1,9 +1,9 @@
 version: 2
 mergeable:
-  - when: pull_request.closed
+  - when: pull_request.opened
     validate:
-      - do: check_merged
-        enabled: true
-    pass:
-      - do: re_run_checks
-        select: none
+      - do: approval
+        reviewers: ['shineTest']
+    fail:
+      - do: request_reviewer
+        reviewers: ['shineTest']
