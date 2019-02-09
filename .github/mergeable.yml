@@ -5,5 +5,5 @@ mergeable:
       - do: approvals
         reviewers: ['shineTest']
     fail:
-      - do: request_reviewer
+      - do: request_review
         reviewers: ['shineTest']
