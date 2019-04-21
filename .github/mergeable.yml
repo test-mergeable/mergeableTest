@@ -120,7 +120,7 @@ mergeable:
         match: 'ends_with_text'
       no_empty:
         enabled: true
-    approval:
+    approvals:
       max:
         count: 4
       min:
