@@ -1,130 +1,33 @@
+version: 2
 mergeable:
-  pull_requests:
-    title:
-      and:
-        - begins_with:
-            match: 'begins_with_text'
-        - ends_with:
-            match: 'ends_with_text'
-      or:
-        - must_include:
-            regex: 'must_be_included_text'
-        - begins_with:
-            match: 'begins_with_text'
-      must_exclude:
-        regex: 'must_be_excluded_text'
-      must_include:
-        regex: 'must_be_included_text'
-      begins_with:
-        match: 'begins_with_text'
-      ends_with:
-        match: 'ends_with_text'
-    assignee:
-      and:
-        - max:
-            count: 4
-        - min:
-            count: 1
-      or:
-        - max:
-            count: 4
-        - min:
-            count: 1
-      required:
-        reviewers: ['shine2lay', 'shinelay']
-      max:
-        count: 4
-      min:
-        count: 1
-      no_empty:
-        enabled: true
-    label:
-      and:
-        - begins_with:
-            match: 'begins_with_text'
-        - must_include:
-            regex: 'must_be_included_text'
-      or:
-        - must_include:
-            regex: 'must_be_included_text'
-        - begins_with:
-            match: 'begins_with_text'
-      must_exclude:
-        regex: 'must_be_excluded_text'
-      must_include:
-        regex: 'must_be_included_text'
-      required:
-        reviewers: ['shine2lay', 'shinelay']
-      begins_with:
-        match: 'begins_with_text'
-      ends_with:
-        match: 'ends_with_text'
-      max:
-        count: 4
-      min:
-        count: 1
-      no_empty:
-        enabled: true
-    description:
-      and:
-        - begins_with:
-            match: 'begins_with_text'
-        - ends_with:
-            match: 'ends_with_text'
-      or:
-        - must_include:
-            regex: 'must_be_included_text'
-        - begins_with:
-            match: 'begins_with_text'
-      must_exclude:
-        regex: 'must_be_excluded_text'
-      must_include:
-        regex: 'must_be_included_text'
-      begins_with:
-        match: 'begins_with_text'
-      ends_with:
-        match: 'ends_with_text'
-      no_empty:
-        enabled: true
-    dependent:
-      files: ['abc.js', 'def.js']
-    milestone:
-      and:
-        - begins_with:
-            match: 'begins_with_text'
-        - ends_with:
-            match: 'ends_with_text'
-      or:
-        - must_include:
-            regex: 'must_be_included_text'
-        - begins_with:
-            match: 'begins_with_text'
-      must_exclude:
-        regex: 'must_be_excluded_text'
-      must_include:
-        regex: 'must_be_included_text'
-      begins_with:
-        match: 'begins_with_text'
-      ends_with:
-        match: 'ends_with_text'
-      no_empty:
-        enabled: true
-    project:
-      must_exclude:
-        regex: 'must_be_excluded_text'
-      must_include:
-        regex: 'must_be_included_text'
-      begins_with:
-        match: 'begins_with_text'
-      ends_with:
-        match: 'ends_with_text'
-      no_empty:
-        enabled: true
-    approvals:
-      max:
-        count: 4
-      min:
-        count: 1
-      required:
-        reviewers: ['shineTest', 'shinelay']
-        owners: true
+  - when: pull_request.*, pull_request_review.*
+    validate:
+      - do: title
+        # Do not merge when it is marked work in progress (WIP)
+        must_exclude:
+          regex: ^\[WIP\]
+          message: This is work in progress. Do not merge yet.
+        # Enforce semantic release convention.
+        must_include:
+          regex: ^(feat|docs|chore|fix|refactor|test|style|perf)(\(\w+\))?:.+$
+          message: Semantic release conventions must be followed.
+        # All todo check boxes must be checked.
+      - do: description
+        must_exclude:
+          regex: \[ \]
+          message: There are incomplete TODO task(s) unchecked.
+      - do: approvals
+        min:
+          count: 1
+        or:
+          - required:
+              reviewers: [ jusx ]
+          - required:
+              reviewers: [ shine2lay ]
+        # Must be marked with the correct milestone.
+      - do: milestone
+        must_include:
+          regex: version 1.2
+    fail:
+      - do: request_review
+        reviewers: ['NonExistentUser']
