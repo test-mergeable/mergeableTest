@@ -9,4 +9,4 @@ mergeable:
           message: This is work in progress. Do not merge yet.
     fail:
       - do: request_review
-        reviewers: ['NonExistentUser']
+        reviewers: ['shineTest']
