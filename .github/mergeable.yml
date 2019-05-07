@@ -8,7 +8,7 @@ mergeable:
           regex: ^\[WIP\]
           message: This is work in progress. Do not merge yet.
     fail:
-      - do: checks,
+      - do: checks
         status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
         payload:
           title: 'Mergeable Run have been Completed!'
