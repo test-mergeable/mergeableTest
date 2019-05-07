@@ -8,5 +8,10 @@ mergeable:
           regex: ^\[WIP\]
           message: This is work in progress. Do not merge yet.
     fail:
+      - do: checks,
+        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
+        payload:
+          title: 'Mergeable Run have been Completed!'
+          summary: `All the validators have returned 'pass'! \n Here are some stats of the run: \n {{validationCount}} validations were ran`
       - do: request_review
         reviewers: ['shineTest']
