@@ -12,6 +12,6 @@ mergeable:
         status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
         payload:
           title: 'Mergeable Run have been Completed!'
-          summary: `All the validators have returned 'pass'! \n Here are some stats of the run: \n {{validationCount}} validations were ran`
+          summary: "All the validators have returned 'pass'! \n Here are some stats of the run: \n {{validationCount}} validations were ran"
       - do: request_review
         reviewers: ['shineTest']
