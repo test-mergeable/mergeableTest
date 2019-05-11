@@ -13,5 +13,5 @@ mergeable:
         payload:
           title: 'Mergeable Run have been Completed!'
           summary: "All the validators have returned 'pass'! \n Here are some stats of the run: \n {{validationCount}} validations were ran"
-      - do: labels
-        labels: ['test2Label', 'test3Label']
+      - do: assgin
+        assignees: ['shineTest', 'shine2lay']
