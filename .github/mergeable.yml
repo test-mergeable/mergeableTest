@@ -5,5 +5,4 @@ mergeable:
       - do: approvals
         required:
           reviewers: [ 'shineFakeAccount' ] # list of github usernames required to review
-          assignees: true # Optional boolean. When true, PR assignees are made required reviewers.
           message: 'Custom message...'
