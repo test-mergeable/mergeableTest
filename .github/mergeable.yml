@@ -13,5 +13,3 @@ mergeable:
         payload:
           title: 'Mergeable Run have been Completed!'
           summary: "All the validators have returned 'pass'! \n Here are some stats of the run: \n {{validationCount}} validations were ran"
-      - do: assign
-        assignees: ['shineTest', 'shine2faketestingAccount']
