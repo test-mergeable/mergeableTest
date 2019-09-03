@@ -6,7 +6,7 @@ mergeable:
         lines:
           max:
             count: 2
-          additions:
+          total:
             count: 1
           deletions:
             count: 1
