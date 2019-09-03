@@ -146,5 +146,6 @@ mergeable:
               - must_include:
                   regex: 'must_be_included_text'
               - begins_with:
+                  regex: 'begins_with_text'
             begins_with:
               match: 'begins_with_text'
