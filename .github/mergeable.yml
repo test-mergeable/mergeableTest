@@ -4,9 +4,5 @@ mergeable:
     validate:
       - do: size
         lines:
-          additions:
+          max:
             count: 2
-          total:
-            count: 1
-          deletions:
-            count: 1
