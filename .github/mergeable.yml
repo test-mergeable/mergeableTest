@@ -4,7 +4,7 @@ mergeable:
     validate:
       - do: size
         lines:
-          max:
+          additions:
             count: 2
           total:
             count: 1
