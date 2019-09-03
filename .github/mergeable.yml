@@ -4,7 +4,7 @@ mergeable:
     validate:
       - do: size
         lines:
-          total:
+          max:
             count: 2
             message: Change is very large. Should be under 500 lines of additions and deletions.
           additions:
