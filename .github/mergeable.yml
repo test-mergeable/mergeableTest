@@ -2,7 +2,14 @@ version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
     validate:
-      - do: approvals
-        required:
-          reviewers: [ 'shineFakeAccount' ] # list of github usernames required to review
-          message: 'Custom message...'
+      - do: size
+        lines:
+          total:
+            count: 2
+            message: Change is very large. Should be under 500 lines of additions and deletions.
+          additions:
+            count: 1
+            message: Change is very large. Should be under 250 lines of additions
+          deletions:
+            count: 1
+            message: Change is very large. Should be under 250 lines of deletions.
