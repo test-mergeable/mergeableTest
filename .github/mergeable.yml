@@ -127,6 +127,8 @@ mergeable:
         no_empty:
           enabled: true
       - do: approvals
+        testt:
+          count: 3
         max:
           count: 4
         min:
