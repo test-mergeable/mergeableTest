@@ -6,10 +6,7 @@ mergeable:
         lines:
           max:
             count: 2
-            message: Change is very large. Should be under 500 lines of additions and deletions.
           additions:
             count: 1
-            message: Change is very large. Should be under 250 lines of additions
           deletions:
             count: 1
-            message: Change is very large. Should be under 250 lines of deletions.
