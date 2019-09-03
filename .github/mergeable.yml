@@ -141,11 +141,10 @@ mergeable:
               regex: 'must_be_excluded_text'
             must_include:
               regex: 'must_be_included_text'
-          - do: assignee
-            and:
-              - max:
-                  count: 4
-              - min:
-                  count: 1
-            max:
-              count: 4
+          - do: label
+            or:
+              - must_include:
+                  regex: 'must_be_included_text'
+              - begins_with:
+            begins_with:
+              match: 'begins_with_text'
