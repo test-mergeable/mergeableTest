@@ -126,7 +126,7 @@ mergeable:
           match: 'ends_with_text'
         no_empty:
           enabled: true
-      - do: approval
+      - do: approvals
         max:
           count: 4
         min:
