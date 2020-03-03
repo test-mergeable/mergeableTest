@@ -3,6 +3,5 @@ mergeable:
   - when: pull_request.*
     validate:
       - do: project
-        must_include:
-          match: March 2020
-          message: PR must be in a sprint project to be merged.
+        match: March 2020
+        message: PR must be in a sprint project to be merged.
