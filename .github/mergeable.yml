@@ -4,5 +4,5 @@ mergeable:
     validate:
       - do: project
         must_include:
-          regex: March 2020
+          regex: /\b(?:(?:Jan|Febr)uary|March|April|June|(?:Ma|Jul)y|August|(?:Septem|Octo|Novem|Decem)ber)\s{1}?(?:20\d{2})\b/
           message: PR must be in a sprint project to be merged.
