@@ -17,8 +17,11 @@ mergeable:
                  {{validationCount}} validations were ran.
                  {{passCount}} PASSED
                  {{failCount}} FAILED
-          text: "{{#each validationSuites}}
-                            #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
-                            {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n{{/each}}
-                            {{/each}}"
+          text: "{{#each validationSuites}}\n
+                          #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
+                          {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}*** \n
+                                 Input : {{{details.input}}}\n
+                                 Settings : {{{displaySettings details.settings}}}\n
+                                 {{/each}}\n
+                          {{/each}}"
 
