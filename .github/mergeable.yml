@@ -2,26 +2,8 @@ version: 2
 mergeable:
   - when: pull_request.*
     validate:
-      - do: project
+      - do: projectwks
         must_include:
           regex: /\b(?:(?:Jan|Febr)uary|March|April|June|(?:Ma|Jul)y|August|(?:Septem|Octo|Novem|Decem)ber)\s{1}?(?:20\d{2})\b/
           message: PR must be in a sprint project to be merged.
-    fail:
-      - do: checks # default fail case
-        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
-        payload:
-          title: 'Mergeable Run have been Completed!'
-          summary:  |
-            ### Status: {{toUpperCase validationStatus}}
-                 Here are some stats of the run:
-                 {{validationCount}} validations were ran.
-                 {{passCount}} PASSED
-                 {{failCount}} FAILED
-          text: "{{#each validationSuites}}\n
-                          #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
-                          {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}*** \n
-                                 Input : {{{details.input}}}\n
-                                 Settings : {{{displaySettings details.settings}}}\n
-                                 {{/each}}\n
-                          {{/each}}"
 
