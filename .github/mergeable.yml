@@ -9,7 +9,7 @@ mergeable:
               regex: 'must_be_excluded_text'
             must_include:
               regex: 'must_be_included_text'
-          - do: label
+          - do: labels
             or:
               - must_include:
                   regex: 'must_be_included_text'
