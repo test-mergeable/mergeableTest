@@ -3,12 +3,12 @@ mergeable:
   - when: pull_request.*
     validate:
       - do: labels
-          or:
-            - must_include:
-              regex: 'must_be_included_text'
-                - begins_with:
-                    regex: 'begins_with_text'
-          begins_with:
-            match: 'begins_with_text'
+        or:
+          - must_include:
+            regex: 'must_be_included_text'
+              - begins_with:
+                  regex: 'begins_with_text'
+        begins_with:
+          match: 'begins_with_text'
 
 
