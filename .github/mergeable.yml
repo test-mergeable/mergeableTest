@@ -10,12 +10,6 @@ mergeable:
         must_exclude:
           regex: 'infrastructure'
           message: 'PR does not have the Infrastructure label.'
-    fail:
-      - do: checks
-        status: 'success'
-        payload:
-          title: 'Infrastructure project rule is not applicable.'
-          summary: "The Mergeable rule enforcing correct labeling on Infrastructure project issues does not apply here."
     pass:
       - do: labels
         labels: [ 'infrastructure' ]
