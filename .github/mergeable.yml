@@ -5,8 +5,8 @@ mergeable:
       # validate title
       - do: description
         and:
-          - must_exclude:
-              regexs: 'must_exclude'
+          - must_xclude:
+              regex: 'must_exclude'
           - must_include:
               regex: 'must_include'
       - do: title
