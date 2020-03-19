@@ -9,3 +9,6 @@ mergeable:
               regexs: 'must_exclude'
           - must_include:
               regex: 'must_include'
+      - do: title
+        must_include:
+          regex: 'test'
