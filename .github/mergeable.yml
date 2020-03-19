@@ -9,7 +9,7 @@ mergeable:
         must_include:
           regex: '^\[[A-Z]+-[0-9]+\]'
       # disallow merging when WIP
-      - do: label
+      - do: labelse
         must_exclude:
           regex: 'wip'
       - do: approvals
