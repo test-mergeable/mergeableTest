@@ -3,16 +3,9 @@ mergeable:
   - when: pull_request.*
     validate:
       # validate title
-      - do: title
-        no_empty:
-          enabled: true
-        must_include:
-          regex: '^\[[A-Z]+-[0-9]+\]'
-      # disallow merging when WIP
-      - do: labelse
-        must_exclude:
-          regex: 'wip'
-      - do: approvals
-        required:
-          owners: true
-          assignees: true
+      - do: description
+        and:
+          - must_exlude:
+              regex: 'must_exclude'
+          - must_include:
+              regex: 'must_include'
