@@ -3,6 +3,9 @@ mergeable:
   - when: pull_request.*
     validate:
       - do: label
-        must_include:
-          regex: 'test plan: no'
-          message: 'If no test plan is necessary, please include test plan: no label'
+        and:
+          - must_include:
+              regaex: 'test plan: no'
+          - must_include:
+              regesx: 'test'
+
