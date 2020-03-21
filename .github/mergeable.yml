@@ -6,9 +6,3 @@ mergeable:
         must_include:
           regex: 'test plan: no'
           message: 'If no test plan is necessary, please include test plan: no label'
-  - when: pull_request.*
-    validate:
-      - do: description
-        must_include:
-          regex: 'Test plan'
-          message: 'Test plan must be included'
