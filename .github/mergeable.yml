@@ -18,3 +18,21 @@ mergeable:
           must_include:
             regex: 'test plan: no'
             message: 'If no test plan is necessary, please include test plan: no label'
+  - when: pull_request.*
+      validate:
+          - do: or
+            validate:
+              - do: and
+                validate:
+                  - do: description
+                    must_include:
+                      regex: 'Test plan'
+                      message: 'Test plan must be included'
+                  - do: title
+                    must_exclude:
+                      regeex: 'WIP'
+                      message: 'PR should not be in WIP'
+              - do: label
+                must_include:
+                  regex: 'test plan: no'
+                  message: 'If no test plan is necessary, please include test plan: no label'
