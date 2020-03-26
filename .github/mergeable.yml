@@ -4,6 +4,5 @@ mergeable:
     validate:
       - do: approvals
         required:
-          pending_reviewer: true
+          requested_reviewers: true
           message: 'All the pending reviewer must approve'
-
