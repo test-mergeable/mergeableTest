@@ -21,10 +21,5 @@ mergeable:
                  {{failCount}} FAILED
           text: "{{#each validationSuites}}\n
                 {{#ifEquals status 'fail'}}
-                #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
-                {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                       Input : {{{details.input}}}\n
-                       Settings : {{{displaySettings details.settings}}}\n
-                       {{/each}}\n
-                {{/each}}
+                test
                 {{/ifEquals}}"
