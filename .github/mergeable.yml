@@ -5,7 +5,7 @@ mergeable:
       - do: title
         must_exclude:
           regex: 'test'
-      - do: lable
+      - do: label
         must_include:
           regex: 'test'
     fail:
