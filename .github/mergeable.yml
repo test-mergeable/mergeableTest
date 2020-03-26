@@ -5,6 +5,9 @@ mergeable:
       - do: title
         must_exclude:
           regex: 'test'
+      - do: lable
+        must_include:
+          regex: 'test'
     fail:
       - do: checks # default fail case
         status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
