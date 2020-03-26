@@ -20,11 +20,11 @@ mergeable:
                  {{passCount}} PASSED
                  {{failCount}} FAILED
           text: "{{#each validationSuites}}\n
-                {{#if ifEquals status 'fail'}}
+                {{#ifEquals status 'fail'}}
                 #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
                 {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
                        Input : {{{details.input}}}\n
                        Settings : {{{displaySettings details.settings}}}\n
                        {{/each}}\n
                 {{/each}}
-                {{/if}}"
+                {{/ifEquals}}"
