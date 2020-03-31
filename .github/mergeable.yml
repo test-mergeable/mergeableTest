@@ -2,30 +2,6 @@ version: 2
 mergeable:
   - when: pull_request.*
     validate:
-      - do: title
-        must_exclude:
-          regex: 'test'
-      - do: label
-        must_include:
-          regex: 'test'
-    fail:
-      - do: checks # default fail case
-        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
-        payload:
-          title: 'Mergeable Run have been Completed!'
-          summary: |
-            ### Status: {{toUpperCase validationStatus}}
-                 Here are some stats of the run:
-                 {{validationCount}} validations were ran.
-                 {{passCount}} PASSED
-                 {{failCount}} FAILED
-          text: "{{#each validationSuites}}\n
-                  {{#ifEquals status 'fail'}}\n
-                #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
-                {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                       Input : {{{details.input}}}\n
-                       Settings : {{{displaySettings details.settings}}}\n
-                       {{/each}}\n
-                  {{/ifEquals}}
-                {{/each}}
-                "
+      - do: approvals
+        block:
+          changes_requested: true
