@@ -6,4 +6,3 @@ mergeable:
         changed:
           file: abc.js
           files: ['package-lock.json', 'yarn.lock']
-        message: 'Custom message...' # this is optional, a default message is used when not specified.
