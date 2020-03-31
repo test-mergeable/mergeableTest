@@ -3,5 +3,5 @@ mergeable:
   - when: pull_request.*
     validate:
       - do: approvals
-        block:
-          changes_requested: true
+        required:
+          owners: true
