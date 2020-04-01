@@ -3,5 +3,5 @@ mergeable:
   - when: pull_request.*
     validate:
       - do: changeset
-        must_include:
+        must_exclude:
           regex: 'abc.js'
