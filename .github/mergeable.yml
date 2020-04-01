@@ -6,3 +6,8 @@ mergeable:
         changed:
           file: abc.js
           files: ['package-lock.json', 'yarn.lock']
+    fail:
+      - do: comment
+        payload:
+          body: >
+            @shine2lay mention test
