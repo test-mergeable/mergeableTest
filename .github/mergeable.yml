@@ -2,12 +2,6 @@ version: 2
 mergeable:
   - when: pull_request.*
     validate:
-      - do: dependent
-        changed:
-          file: abc.js
-          files: ['package-lock.json', 'yarn.lock']
-    fail:
-      - do: comment
-        payload:
-          body: >
-            @shine2lay mention test
+      - do: changeset
+        must_include:
+          regex: 'abc.js'
