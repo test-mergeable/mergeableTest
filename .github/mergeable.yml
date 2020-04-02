@@ -4,5 +4,5 @@ mergeable:
     validate:
       - do: changeset
         must_exclude:
-          regex: 'abc.js'
+          regex: 'ABC.js'
           regex_flags: ''
