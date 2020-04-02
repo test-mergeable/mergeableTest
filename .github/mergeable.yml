@@ -5,3 +5,4 @@ mergeable:
       - do: changeset
         must_exclude:
           regex: 'abc.js'
+          regex_flags: ''
