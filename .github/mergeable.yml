@@ -3,7 +3,7 @@ mergeable:
   - when: pull_request.*
     validate:
       - do: label
-        must_exclude:
+        must_include:
           regex: 'close'
     pass:
       - do: close
