@@ -2,7 +2,8 @@ version: 2
 mergeable:
   - when: pull_request.*
     validate:
-      - do: changeset
+      - do: labels
         must_exclude:
-          regex: 'ABC.js'
-          regex_flags: ''
+          regex: 'close'
+    pass:
+      - do: close
