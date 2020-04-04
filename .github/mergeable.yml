@@ -1,9 +1,5 @@
 version: 2
 mergeable:
-  - when: issues.*
-    validate:
-      - do: label
-        must_include:
-          regex: 'close'
+  - when: pull_request.*
     pass:
       - do: close
