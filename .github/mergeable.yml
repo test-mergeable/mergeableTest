@@ -9,7 +9,7 @@ mergeable:
       - do: comment
         payload: >
           Second Comment
-  when: issue.*
+  - when: issues.*
     validate:
       - do: label
         must_include:
