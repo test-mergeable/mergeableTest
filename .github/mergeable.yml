@@ -7,8 +7,9 @@ mergeable:
           regex: test
     pass:
       - do: comment
-        payload: >
-          Second Comment
+        payload:
+          body: >
+            First Comment
   - when: issues.*
     validate:
       - do: label
@@ -16,5 +17,6 @@ mergeable:
           regex: test
     pass:
       - do: comment
-        payload: >
-          Second Comment
+        payload:
+          body: >
+            Second Comment
