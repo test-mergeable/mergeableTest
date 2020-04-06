@@ -1,22 +1,12 @@
 version: 2
 mergeable:
-  - when: issues.*
+  - when: pull_request.*
     validate:
       - do: label
-        must_include:
+        must_exclude:
           regex: test
-    pass:
-      - do: comment
-        payload:
-          body: >
-            First Comment
-  - when: issues.*
+  - when: pull_request.*
     validate:
       - do: label
-        must_include:
+        must_exclude:
           regex: test
-    pass:
-      - do: comment
-        payload:
-          body: >
-            Second Comment
