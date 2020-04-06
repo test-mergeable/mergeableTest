@@ -1,11 +1,13 @@
 version: 2
 mergeable:
   - when: pull_request.*
+    name: 'Rule Set - 1'
     validate:
       - do: label
         must_exclude:
           regex: test
   - when: pull_request.*
+    name: 'Rule Set - 2'
     validate:
       - do: label
         must_exclude:
