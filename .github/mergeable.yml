@@ -5,3 +5,4 @@ mergeable:
       - do: commit
         message:
           regex: 'test'
+          oldest_only: true
