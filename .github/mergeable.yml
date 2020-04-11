@@ -7,7 +7,7 @@ mergeable:
           regex: '^(build|chore|ci|docs|feat|fix|improvement|perf|refactor|revert|style|test)(\([a-z0-9_-]+\))?: [^\s].+$'
           regex_flag: 'none'
       - do: commit
-        messsage: *regex_semantic
+        message: *regex_semantic
       - do: description
         no_empty:
           enabled: true
