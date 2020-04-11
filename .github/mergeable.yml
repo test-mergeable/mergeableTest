@@ -1,8 +1,21 @@
 version: 2
 mergeable:
-  - when: pull_request.*
+  - when: pull_request.*, pull_request_review.*
     validate:
+      - do: title
+        must_include: &regex_semantic
+          regex: '^(build|chore|ci|docs|feat|fix|improvement|perf|refactor|revert|style|test)(\([a-z0-9_-]+\))?: [^\s].+$'
+          regex_flag: 'none'
       - do: commit
-        message:
-          regex: 'test'
-          oldest_only: true
+        messsage: *regex_semantic
+      - do: description
+        no_empty:
+          enabled: true
+      - do: label
+        must_exclude:
+          regex: 'BLOCKED'
+          regex_flag: 'none'
+      - do: dependent
+        changed:
+          file: 'package.json'
+          files: ['yarn.lock']
