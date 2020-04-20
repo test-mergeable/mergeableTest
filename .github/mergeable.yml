@@ -1,0 +1,13 @@
+version: 2
+mergeable:
+  - when: pull_request.*, pull_request_review.*
+    validate:
+      - do: title
+        must_exclude:
+          regex: 'must_be_excluded_text'
+        must_include:
+          regex: 'must_be_included_text'
+        begins_with:
+          match: 'begins_with_text'
+        ends_with:
+          match: 'ends_with_text'
