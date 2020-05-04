@@ -1,6 +1,7 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
+    name: 'Check 1'
     validate:
       - do: description
         no_empty:
@@ -27,6 +28,7 @@ mergeable:
           message: >
             Please include ticket in title in square brackets (ex: [AAA-123])
   - when: pull_request.*, pull_request_review.*
+    name: 'Check 2'
     validate:
       - do: description
         no_empty:
