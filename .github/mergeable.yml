@@ -36,11 +36,3 @@ mergeable:
           regex_flag: 'none'
           message: >
             Please include ticket link in square brackets (ex: [AAA-123])
-      - do: title
-        no_empty:
-          enabled: true
-        must_include:
-          regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
-          regex_flag: 'none'
-          message: >
-            Please include ticket in title in square brackets (ex: [AAA-123])
