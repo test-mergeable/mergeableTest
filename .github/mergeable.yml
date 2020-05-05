@@ -1,38 +1,17 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
+    name: 'JIRA ticket in Title'
     validate:
-      - do: description
-        no_empty:
-          enabled: true
-        must_include:
-          regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
-          regex_flag: 'none'
-          message: >
-            Please include ticket link in square brackets (ex: [AAA-123])
-      - do: description
-        no_empty:
-          enabled: true
-        must_include:
-          regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]:\shttps:\/\/readyresponders.+'
-          regex_flag: 'none'
-          message: >
-            Automatic linking (via JIRA bot) to the JIRA ticket must occur.
       - do: title
-        no_empty:
-          enabled: true
         must_include:
           regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
           regex_flag: 'none'
           message: >
             Please include ticket in title in square brackets (ex: [AAA-123])
   - when: pull_request.*, pull_request_review.*
+    name: 'Non Empty Description'
     validate:
       - do: description
         no_empty:
           enabled: true
-        must_include:
-          regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
-          regex_flag: 'none'
-          message: >
-            Please include ticket link in square brackets (ex: [AAA-123])
