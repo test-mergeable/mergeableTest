@@ -9,8 +9,8 @@ mergeable:
           message: >
             Please include ticket in title in square brackets (ex: [AAA-123])
   - when: pull_request.*, pull_request_review.*
-    name: 'Non Empty Description'
+    name: 'Check Approvals'
     validate:
-      - do: description
-        no_empty:
-          enabled: true
+      - do: approvals
+        required:
+          reviewer: ['shine2lay']
