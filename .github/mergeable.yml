@@ -13,6 +13,6 @@ mergeable:
     validate:
       - do: approvals
         limit:
-          teams: ['test-mergeable/reviewer']
+          teams: ['shine2lay/reviewer']
         min:
           count: 1
