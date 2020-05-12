@@ -12,5 +12,7 @@ mergeable:
     name: 'Check Approvals'
     validate:
       - do: approvals
-        required:
-          reviewer: ['shine2lay']
+        limit:
+          teams: ['test-mergeable/reviewer']
+        min:
+          count: 1
