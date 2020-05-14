@@ -16,7 +16,7 @@ mergeable:
           teams: ['shine2lay/reviewer']
         min:
           count: 1
-    error:
+    fail:
       - do: comment
         payload:
           body: >
