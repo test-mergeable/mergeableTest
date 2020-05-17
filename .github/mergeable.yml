@@ -6,15 +6,12 @@ mergeable:
       - do: title
         must_include:
           regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
+          regex_flag: 'none'
           message: >
             Please include ticket in title in square brackets (ex: [AAA-123])
   - when: pull_request.*, pull_request_review.*
-    name: 'Check Approvals'
+    name: 'Non Empty Description'
     validate:
-      - do: approvals
-        limit:
-          teams: ['shine2lay/reviewer']
-        min:
-          count: 1
-    error:
-      - do: merge
+      - do: description
+        no_empty:
+          enabled: true
