@@ -12,6 +12,11 @@ mergeable:
   - when: pull_request.*, pull_request_review.*
     name: 'Non Empty Description'
     validate:
-      - do: description
-        no_empty:
-          enabled: true
+      - do: approvals
+        limit:
+          teams: ['shine2lay/reviewer']
+        min:
+          count: 1
+    error:
+      - do: merge
+        merge_method: 'squash'
