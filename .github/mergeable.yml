@@ -18,3 +18,4 @@ mergeable:
           count: 1
     error:
       - do: merge
+        merge_method: 'squash'
