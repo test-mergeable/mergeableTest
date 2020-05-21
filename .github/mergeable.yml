@@ -14,3 +14,7 @@ mergeable:
       - do: stale
         days: 20
         type: pull_request
+        limit:
+          time_zone: 'America/Los_Angeles'
+          hours: ['09:00', '17:00']
+          days_of_week: ['Mon', 'Tue', 'Wed', 'Fri']
