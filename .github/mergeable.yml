@@ -17,4 +17,4 @@ mergeable:
         limit:
           time_zone: 'Europe/Lisbon'
           hours_between: ['09:00', '17:00']
-          days_of_week: ['Mon', 'Tue', 'Wed', 'Fri']
+          days_of_week: ['Mon', 'Tue', 'Wed', 'Thu']
