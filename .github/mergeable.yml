@@ -10,14 +10,10 @@ mergeable:
             Please include ticket in title in square brackets (ex: [AAA-123])
     error:
       - do: checks # default fail case
-        status: 'action_required' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
+        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
         payload:
           summary: |
-              ### Status: {{toUpperCase validationStatus}}
-                   Here are some stats of the run:
-                   {{validationCount}} validations were ran.
-                   {{passCount}} PASSED
-                   {{failCount}} FAILED
+              different summary
           text: "{{#each validationSuites}}\n
                   #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
                   {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
@@ -35,3 +31,7 @@ mergeable:
           time_zone: 'Europe/Lisbon'
           hours_between: ['09:00', '17:00']
           days_of_week: ['Mon', 'Tue', 'Wed', 'Thu']
+    error:
+      - do: comment # default fail case
+        payload:
+          body: 'body
