@@ -4,23 +4,10 @@ mergeable:
     name: 'JIRA ticket in Title'
     validate:
       - do: title
-        must_include:
+        must_includ:
           regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
           message: >
             Please include ticket in title in square brackets (ex: [AAA-123])
-    error:
-      - do: checks # default fail case
-        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
-        payload:
-          summary: |
-              different summary
-          text: "{{#each validationSuites}}\n
-                  #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
-                  {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                         Input : {{{details.input}}}\n
-                         Settings : {{{displaySettings details.settings}}}\n
-                         {{/each}}\n
-                  {{/each}}"
   - when: schedule.repository
     name: 'Check Approvals'
     validate:
