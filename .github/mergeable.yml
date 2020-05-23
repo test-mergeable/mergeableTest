@@ -4,8 +4,8 @@ mergeable:
     name: 'JIRA ticket in Title'
     validate:
       - do: title
-        must_includ:
-          regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
+        must_include:
+          regex: ['\[[a-zA-Z]{2,6}-\d{1,7}\]']
           message: >
             Please include ticket in title in square brackets (ex: [AAA-123])
   - when: schedule.repository
