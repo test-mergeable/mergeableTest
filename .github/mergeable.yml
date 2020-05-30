@@ -4,8 +4,6 @@ mergeable:
     name: 'JIRA ticket in Title'
     validate:
       - do: title
-        files:
-          diff: true
         must_exclude:
           regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
           regex_flag: 'none'
