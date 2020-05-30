@@ -3,7 +3,7 @@ mergeable:
   - when: pull_request.*, pull_request_review.*
     name: 'JIRA ticket in Title'
     validate:
-      - do: contents
+      - do: title
         files:
           diff: true
         must_exclude:
