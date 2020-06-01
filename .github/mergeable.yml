@@ -1,21 +1,12 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: 'JIRA ticket in Title'
-    validate:
-      - do: title
-        must_exclude:
-          regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
-          regex_flag: 'none'
-          message: >
-            Please exclude ticket in title in square brackets (ex: [AAA-123])
-  - when: schedule.repository
-    name: 'Check Approvals'
-    validate:
-      - do: stale
-        days: 20
-        type: pull_request
-        limit:
-          time_zone: 'Europe/Lisbon'
-          hours_between: ['09:00', '17:00']
-          days_of_week: ['Mon', 'Tue', 'Wed', 'Thu']
+      name: 'Validate Pull Request Size'
+      validate:
+        - do: size
+          ignore:
+            - '*.lock'
+          lines:
+            max:
+              count: 500
+              message: Lines of code have too many changes. It should be under 500 lines of addtions and deletions.
