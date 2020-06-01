@@ -1,12 +1,12 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-      name: 'Validate Pull Request Size'
-      validate:
-        - do: size
-          ignore:
-            - '*.lock'
-          lines:
-            max:
-              count: 500
-              message: Lines of code have too many changes. It should be under 500 lines of addtions and deletions.
+    name: 'Validate Pull Request Size'
+    validate:
+      - do: size
+        ignore:
+          - '*.lock'
+        lines:
+          max:
+            count: 500
+            message: Lines of code have too many changes. It should be under 500 lines of addtions and deletions.
