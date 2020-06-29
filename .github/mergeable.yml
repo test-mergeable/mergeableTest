@@ -3,8 +3,8 @@ mergeable:
   - when: pull_request.*, pull_request_review.*
     name: 'Validate Pull Request Size'
     validate:
-      - do: contents
-        files:
-          pr_diff: true
-        must_exclude:
-          regex: 'no_include'
+      - do: size
+        lines:
+          total:
+            count: 2
+          ignore_comments: true
