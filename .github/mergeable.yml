@@ -1,33 +1,10 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: 'JIRA ticket in Title'
+    name: 'Validate Pull Request Size'
     validate:
-      - do: title
-        must_include:
-          regex: '\[[a-zA-Z]{2,6}-\d{1,7}\]'
-          message: >
-            Please include ticket in title in square brackets (ex: [AAA-123])
-    error:
-      - do: checks # default fail case
-        status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
-        payload:
-          summary: |
-              different summary
-          text: "{{#each validationSuites}}\n
-                  #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
-                  {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                         Input : {{{details.input}}}\n
-                         Settings : {{{displaySettings details.settings}}}\n
-                         {{/each}}\n
-                  {{/each}}"
-  - when: schedule.repository
-    name: 'Check Approvals'
-    validate:
-      - do: stale
-        days: 20
-        type: pull_request
-        limit:
-          time_zone: 'Europe/Lisbon'
-          hours_between: ['09:00', '17:00']
-          days_of_week: ['Mon', 'Tue', 'Wed', 'Thu']
+      - do: size
+        lines:
+          total:
+            count: 2
+          ignore_comments: true
