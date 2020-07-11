@@ -28,7 +28,7 @@ mergeable:
   - when: pull_request.*
     name: "approvals"
     validate:
-      - do: approval
+      - do: approvals
         min:
           count: 1
         limit:
