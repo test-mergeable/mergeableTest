@@ -7,11 +7,9 @@ mergeable:
       - do: assignee
         min:
           count: 1
-    pass:
     fail:
       - do: assign
         assignees: [ '@author' ]
-    error:
 
   # Validate fields changeable by maintainers
   - when: pull_request.*
@@ -26,6 +24,15 @@ mergeable:
       - do: milestone
         no_empty:
           enabled: true
+
+  - when: pull_request.*
+    name: "approvals"
+    validate:
+      - do: approval
+        min:
+          count: 1
+        limit:
+          teams: ['@test-mergeable/reviewers']
 
   # Validate fields changeable by anybody
   - when: pull_request.*
