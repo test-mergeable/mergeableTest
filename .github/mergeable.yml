@@ -1,9 +1,67 @@
+defaults:
+  checks_failure_payload: &checks_failure_payload
+    title: 'Mergeable Run have been Completed!'
+    summary: |
+      ### Status: {{toUpperCase validationStatus}}
+          Here are some stats of the run:
+          {{validationCount}} validations were ran.
+          {{passCount}} PASSED
+          {{failCount}} FAILED
+    text: "{{#each validationSuites}}\n
+          #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
+          {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
+                  Input : {{{details.input}}}\n
+                  Settings : {{{displaySettings details.settings}}}\n
+                  {{/each}}\n
+          {{/each}}"
+
 version: 2
 mergeable:
-  - when: pull_request.*, pull_request_review.*
-    name: 'Validate Pull Request Size'
+  - when: pull_request.*
+    name: "triage"
     validate:
-      - do: size
-        lines:
-          total:
-            count: 2
+      - do: label
+        and:
+          - no_empty:
+              enabled: true
+          - must_exclude:
+              regex: duplicate|feedback|invalid|wont|progress
+      - do: milestone
+        no_empty:
+          enabled: true
+      - do: assignee
+        min:
+          count: 1
+      - do: description
+        no_empty:
+          enabled: true
+          message: Description should not be empty. Provide details with **what** was changed, **why** it was changed, and **how** it was changed.
+      - do: dependent
+        changed:
+          file: '*'
+          files: ['CHANGELOG.md']
+        message: Missing CHANGELOG entry
+      - do: dependent
+        changed:
+          file: 'binscripts/rvm-installer'
+          files: ['binscripts/rvm-installer.asc']
+        message: Installer is missing updated signature
+      - do: dependent
+        changed:
+          file: 'config/known'
+          files: ['config/known_strings', 'config/md5', 'config/sha512']
+        message: New ruby version needs to be listed as known and with signatures
+      - do: dependent
+        changed:
+          file: 'config/known_strings'
+          files: ['config/md5', 'config/sha512']
+        message: New ruby version needs to be listed as known and with signatures
+      - do: dependent
+        files: ['config/md5', 'config/sha512']
+        message: Both md5 and sha512 signatures needs to be modified together
+    fail:
+      - do: checks
+        status: 'failure'
+        payload: *checks_failure_payload
+      - do: assign
+        assignees: [ '@author' ]
