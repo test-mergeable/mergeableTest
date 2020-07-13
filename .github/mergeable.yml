@@ -17,21 +17,6 @@ defaults:
 
 version: 2
 mergeable:
-  # Validate assignee
-  - when: pull_request.*
-    name: "assignee"
-    validate:
-      - do: assignee
-        min:
-          count: 1
-    fail:
-      - do: checks
-        status: 'failure'
-        payload: *checks_failure_payload
-      - do: assign
-        assignees: [ '@author' ]
-
-  # Validate fields changeable by maintainers
   - when: pull_request.*
     name: "triage"
     validate:
@@ -44,11 +29,9 @@ mergeable:
       - do: milestone
         no_empty:
           enabled: true
-
-  # Validate fields changeable by anybody
-  - when: pull_request.*
-    name: "content"
-    validate:
+      - do: assignee
+        min:
+          count: 1
       - do: description
         no_empty:
           enabled: true
@@ -80,17 +63,5 @@ mergeable:
       - do: checks
         status: 'failure'
         payload: *checks_failure_payload
-      - do: comment
-        payload:
-          body: This PR does not contain all required information and changes. Check the `mergeable` status for more details.
-
-  # Stale PR
-  - when: schedule.repository
-    validate:
-      - do: stale
-        days: 20
-        type: pull_request, issues
-    pass:
-      - do: comment
-        payload:
-          body: There was no activity for 20 days. Is this still relevant?
+      - do: assign
+        assignees: [ '@author' ]
