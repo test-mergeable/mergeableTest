@@ -7,11 +7,9 @@ mergeable:
       - do: assignee
         min:
           count: 1
-    pass:
     fail:
       - do: assign
         assignees: [ '@author' ]
-    error:
 
   # Validate fields changeable by maintainers
   - when: pull_request.*
