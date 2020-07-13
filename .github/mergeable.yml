@@ -26,8 +26,8 @@ mergeable:
           count: 1
     fail:
       - do: checks
-          status: 'failure'
-          payload: *checks_failure_payload
+        status: 'failure'
+        payload: *checks_failure_payload
       - do: assign
         assignees: [ '@author' ]
 
@@ -78,8 +78,8 @@ mergeable:
         message: Both md5 and sha512 signatures needs to be modified together
     fail:
       - do: checks
-          status: 'failure'
-          payload: *checks_failure_payload
+        status: 'failure'
+        payload: *checks_failure_payload
       - do: comment
         payload:
           body: This PR does not contain all required information and changes. Check the `mergeable` status for more details.
