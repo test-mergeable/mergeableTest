@@ -1,7 +1,6 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: 'Validate Pull Request Size'
     validate:
       - do: size
         lines:
