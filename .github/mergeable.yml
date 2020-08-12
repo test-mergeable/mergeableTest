@@ -2,7 +2,8 @@ version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
     validate:
-      - do: size
-        lines:
-          total:
-            count: 2
+      - do: dependent
+        changed:
+          file: 'dags/**/*.py'
+          files: ['helm/values.yaml']
+        message: 'A dags file changed, you must push up the new image and then paste the image digest into the helm/values.yaml file.'
