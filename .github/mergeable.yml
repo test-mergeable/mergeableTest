@@ -10,7 +10,7 @@ mergeable:
                 must_include:
                   regex: ^(feat)(\(\w+\))?:.+$
               - do: changeset
-                must_incldue:
+                must_include:
                   regex: 'docs/changelog.rst'
                   message: 'new features needed to be added to the changelog'
           - do: title
