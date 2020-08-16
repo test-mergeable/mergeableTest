@@ -2,8 +2,19 @@ version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
     validate:
-      - do: dependent
-        changed:
-          file: 'dags/**/*.py'
-          files: ['helm/values.yaml']
-        message: 'A dags file changed, you must push up the new image and then paste the image digest into the helm/values.yaml file.'
+      - do: or
+        validate:
+          - do: and
+            validate:
+              - do: title
+                must_include:
+                  regex: ^(feat)(\(\w+\))?:.+$
+              - do: changeset
+                must_incldue:
+                  regex: 'docs/changelog.rst'
+                  message: 'new features needed to be added to the changelog'
+          - do: title
+            must_exclude:
+              regex: ^(feat)(\(\w+\))?:.+$
+              message: 'new features needed to be added to the changelog'
+
