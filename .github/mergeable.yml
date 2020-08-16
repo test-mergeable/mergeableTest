@@ -1,9 +1,26 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: 'Validate Pull Request Size'
     validate:
-      - do: size
-        lines:
-          total:
-            count: 2
+      - do: or
+        validate:
+          - do: and
+            validate:
+              - do: title
+                must_include:
+                  regex: ^(feat)(\(\w+\))?:.+$
+              - do: changeset
+                must_include:
+                  regex: 'docs/changelog.rst'
+                  message: 'new features needed to be added to the changelog'
+          - do: title
+            must_exclude:
+              regex: ^(feat)(\(\w+\))?:.+$
+              message: 'new features needed to be added to the changelog'
+    pass:
+      - do: merge
+        merge_method: 'squash'
+      - do: checks
+        status: 'success'
+
+
