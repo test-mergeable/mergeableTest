@@ -16,7 +16,7 @@ mergeable:
           - do: title
             must_exclude:
               regex: ^(feat)(\(\w+\))?:.+$
-            message: 'new features needed to be added to the changelog'
+              message: 'new features needed to be added to the changelog'
     pass:
       - do: merge
         merge_method: 'squash'
