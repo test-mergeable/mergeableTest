@@ -5,9 +5,6 @@ mergeable:
       - do: changeset
         max:
           count: 3
-      - do: title
-        must_include:
-          regex: 'non_conform'
     fail:
       - do: checks # default fail case
         status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
@@ -23,11 +20,7 @@ mergeable:
             {{#each validationSuites}}\n
                 #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
                 {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                    {{#ifEquals name "changeset"}}
                        Input : {{{details.input.length}}}\n
-                    {{else}}
-                      Input : {{{details.input}}}\n
-                    {{/ifEquals}}
                        Settings : {{{displaySettings details.settings}}}\n
                {{/each}}\n
             {{/each}}"
