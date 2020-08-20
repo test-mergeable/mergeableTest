@@ -23,11 +23,11 @@ mergeable:
             {{#each validationSuites}}\n
                 #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
                 {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                    {{ifEquals name "changeset"}}
+                    {{#ifEquals name "changeset"}}
                        Input : {{{details.input.length}}}\n
                     {{else}}
                       Input : {{{details.input}}}\n
-                    {{/if}}
+                    {{/ifEquals}}
                        Settings : {{{displaySettings details.settings}}}\n
-                       {{/each}}\n
+               {{/each}}\n
             {{/each}}"
