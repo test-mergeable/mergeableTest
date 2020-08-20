@@ -19,7 +19,7 @@ mergeable:
           text: "{{#each validationSuites}}\n
                 #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
                 {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                      {{#if ifEquals name changeset}}
+                      {{#ifEquals name "changeset"}}
                        Input : {{{details.input.length}}}\n
                       {{else}}
                       Input : {{{details.input}}}\n
