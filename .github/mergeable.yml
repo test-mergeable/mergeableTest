@@ -5,6 +5,9 @@ mergeable:
       - do: changeset
         max:
           count: 3
+      - do: title
+        must_include:
+          regex: 'non_conform'
     fail:
       - do: checks # default fail case
         status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
