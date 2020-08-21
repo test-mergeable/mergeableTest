@@ -3,8 +3,9 @@ mergeable:
   - when: pull_request.*, pull_request_review.*
     validate:
       - do: size
-        max:
-          count: 3
+        lines:
+          max:
+            count: 3
     fail:
       - do: checks # default fail case
         status: 'failure' # Can be: success, failure, neutral, cancelled, timed_out, or action_required
