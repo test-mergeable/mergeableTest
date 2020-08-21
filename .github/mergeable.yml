@@ -2,7 +2,7 @@ version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
     validate:
-      - do: changeset
+      - do: size
         max:
           count: 3
     fail:
