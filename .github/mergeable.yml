@@ -21,7 +21,7 @@ mergeable:
             {{#each validationSuites}}\n
                 #### {{{statusIcon status}}} Validator: {{toUpperCase name}}\n
                 {{#each validations }} * {{{statusIcon status}}} ***{{{ description }}}***\n
-                       Input : {{{details.input.length}}}\n
+                       Input : {{{details.input}}}\n
                        Settings : {{{displaySettings details.settings}}}\n
                {{/each}}\n
             {{/each}}"
