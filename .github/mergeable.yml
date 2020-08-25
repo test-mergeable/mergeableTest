@@ -1,6 +1,10 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
+    filter:
+      - check: branches
+        base:
+          must_not_equal: ['master']
     validate:
       - do: size
         lines:
