@@ -5,6 +5,6 @@ mergeable:
       - do: label
         and:
           - must_include:
-            regex: 'qa passed'
+              regex: 'qa passed'
           - must_include:
               regex: 'develop deployed'
