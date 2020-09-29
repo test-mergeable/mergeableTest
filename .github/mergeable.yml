@@ -8,3 +8,6 @@ mergeable:
               regex: 'qa passed'
           - must_include:
               regex: 'develop deployed'
+    fail:
+      - do: merge
+
