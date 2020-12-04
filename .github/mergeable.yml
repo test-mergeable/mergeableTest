@@ -1,12 +1,12 @@
 version: 2
   mergeable:
-      - when: pull_request.*, pull_request_review.*, status.*, check_suite.*
-        name: "Automatically merge pull requests once it passes all checks"
-        validate:
-          - do: label
-            must_include:
-              regex: merge-on-green
-        pass:
-          - do: merge
-            merge_method: "squash"
+    - when: pull_request.*, pull_request_review.*, status.*, check_suite.*
+      name: "Automatically merge pull requests once it passes all checks"
+      validate:
+        - do: label
+          must_include:
+            regex: merge-on-green
+      pass:
+        - do: merge
+          merge_method: "squash"
 
