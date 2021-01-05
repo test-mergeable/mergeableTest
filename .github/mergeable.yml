@@ -6,4 +6,3 @@ mergeable:
       - do: label
         must_include:
           regex: merge-on-green
-
