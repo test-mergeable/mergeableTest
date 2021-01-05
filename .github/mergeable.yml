@@ -1,6 +1,6 @@
 version: 2
 mergeable:
-  - when: pull_request.*, pull_request_review.*, status.*, check_suite.*
+  - when: pull_request.*, pull_request_review.*
     name: "check label"
     validate:
       - do: label
