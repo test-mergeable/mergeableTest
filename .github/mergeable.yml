@@ -1,9 +1,43 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: "check label"
+    name: 'Check Approvals'
     validate:
-      - do: label
+      - do: approvals
+        max:
+          count: 2
+          message: 'Max is 2'
+        min:
+          count: 1
+          message: 'Minimum is 1'
+        required:
+          reviewers: [ 'shineTest', 'shinelay' ]
+          assignees: true
+          requested_reviewers: true
+          owners: true
+          message: 'required approvals not met'
+        block:
+          changes_requested: true
+          message: 'all changes requested must be resolved'
+        limit:
+          teams: '@test-mergeable/reviewers'
+          owners: true # boolean
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check assignee'
+    validate:
+      - do: assignee
+        max:
+          count: 2
+          message: 'Max is 2'
+        min:
+          count: 1
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check baseRef'
+    validate:
+      - do: baseRef
         must_include:
-          regex: merge-on-green
-
+          regex: 'base'
+          message: 'PR must be against base branch'
+        must_exclude:
+          regex: 'head'
+          message: 'head branch cannot be baseRef'
