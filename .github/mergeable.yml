@@ -108,6 +108,6 @@ mergeable:
         changed:
           file: 'package.json'
           required: ['package-lock.json', 'changelog.md']
-        messge: 'if package.json is changed, package-lock.json and changelog.md must be included as well'
+        message: 'if package.json is changed, package-lock.json and changelog.md must be included as well'
 
 
