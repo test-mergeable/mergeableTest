@@ -109,5 +109,95 @@ mergeable:
           file: 'package.json'
           required: ['package-lock.json', 'changelog.md']
         message: 'if package.json is changed, package-lock.json and changelog.md must be included as well'
-
-
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check description'
+    validate:
+      - do: description
+        no_empty:
+          enabled: true
+          message: 'description cannot be empty'
+        must_include:
+          regex: 'Testing'
+          message: 'Testing must be described'
+        must_exclude:
+          regex: 'TODO'
+          message: 'please finish all TODOs'
+        begins_with:
+          match: 'Changes'
+          message: 'All the changes must be listed in description'
+        ends_with:
+          match: 'End of Description'
+          message: 'End of Description must be present'
+        min:
+          count: 1
+          message: 'There must be at least one file changed'
+        max:
+          count: 5
+          message: 'Too many file changes, please reduce them'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check headRef'
+    validate:
+      - do: headRef
+        must_include:
+          regex: 'TIX'
+          message: 'head branch name must include TIX number'
+        must_exclude:
+          regex: 'feature'
+          message: 'features must go into a different branch'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check label'
+    validate:
+      - do: label
+        no_empty:
+          enabled: true
+          message: 'label cannot be empty'
+        must_include:
+          regex: 'ready to merge'
+          message: 'PR is not yet ready to merge'
+        must_exclude:
+          regex: 'WIP'
+          message: 'the PR is still labeled as WIP'
+        begins_with:
+          match: 'Effort'
+          message: 'Effort label must be included'
+        ends_with:
+          match: '-js'
+          message: 'label ending with -js must be included'
+        min:
+          count: 1
+          message: 'There must be at least one label attached'
+        max:
+          count: 10
+          message: 'Too many labels, please reduce them'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check Milestone'
+    validate:
+      - do: milestone
+        no_empty:
+          enabled: true
+          message: 'milestone cannot be empty'
+        must_include:
+          regex: '2021'
+          message: 'Must be in a 2021 milestone'
+        must_exclude:
+          regex: '2020'
+          message: 'must not be in 2020 milestone'
+        begins_with:
+          match: 'v11'
+          message: 'must be in v11 milestone'
+        ends_with:
+          match: '.1.3'
+          message: 'must be for .1.3 patch'
+        min:
+          count: 1
+          message: 'There must be at least one milestone attached'
+        max:
+          count: 1
+          message: 'Too many milestone, please reduce them to 1'
+  - when: pull_request.*, pull_request_review.*
+      name: 'Check Project'
+      validate:
+        - do: project
+          must_include:
+            regex: '2021'
+            message: 'Must be in a 2021 project'
