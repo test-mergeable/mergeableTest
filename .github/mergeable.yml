@@ -20,7 +20,7 @@ mergeable:
           changes_requested: true
           message: 'all changes requested must be resolved'
         limit:
-          teams: '@test-mergeable/reviewers'
+          teams: ['@test-mergeable/reviewers']
           owners: true # boolean
   - when: pull_request.*, pull_request_review.*
     name: 'Check assignee'
