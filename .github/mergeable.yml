@@ -128,12 +128,6 @@ mergeable:
         ends_with:
           match: 'End of Description'
           message: 'End of Description must be present'
-        min:
-          count: 1
-          message: 'There must be at least one file changed'
-        max:
-          count: 5
-          message: 'Too many file changes, please reduce them'
   - when: pull_request.*, pull_request_review.*
     name: 'Check headRef'
     validate:
@@ -188,12 +182,6 @@ mergeable:
         ends_with:
           match: '.1.3'
           message: 'must be for .1.3 patch'
-        min:
-          count: 1
-          message: 'There must be at least one milestone attached'
-        max:
-          count: 1
-          message: 'Too many milestone, please reduce them to 1'
   - when: pull_request.*, pull_request_review.*
     name: 'Check Project'
     validate:
