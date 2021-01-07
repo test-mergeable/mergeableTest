@@ -208,20 +208,20 @@ mergeable:
         ignore_comments: true
   - when: pull_request.*, pull_request_review.*
     name: 'Check title'
-      validate:
-        - do: title
-          no_empty:
-            enabled: true
-            message: 'milestone cannot be empty'
-          must_include:
-            regex: 'feat|docs'
-            message: 'title must include feat or docs'
-          must_exclude:
-            regex: 'WIP'
-            message: 'title must exclude WIP'
-          begins_with:
-            match: 'TIX'
-            message: 'title must begin with TIX number'
-          ends_with:
-            match: '\d{5}'
-            message: 'title must end with a 5 digits ID'
+    validate:
+      - do: title
+        no_empty:
+          enabled: true
+          message: 'milestone cannot be empty'
+        must_include:
+          regex: 'feat|docs'
+          message: 'title must include feat or docs'
+        must_exclude:
+          regex: 'WIP'
+          message: 'title must exclude WIP'
+        begins_with:
+          match: 'TIX'
+          message: 'title must begin with TIX number'
+        ends_with:
+          match: '\d{5}'
+          message: 'title must end with a 5 digits ID'
