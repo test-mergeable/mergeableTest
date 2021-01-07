@@ -239,7 +239,7 @@ mergeable:
             Please sure the description is not empty
   - when: pull_request.opened
     name: 'Assign author as assignee when pull request open'
-    validate:
+    validate: []
     pass:
       - do: assign
         assignees: ['@author']
