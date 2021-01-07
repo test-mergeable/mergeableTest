@@ -203,9 +203,9 @@ mergeable:
           deletions:
             count: 5
             message: 'there should not be more than 5 deletions per PR'
+          ignore_comments: true
         match: ['first.js']
         ignore: ['second.js']
-        ignore_comments: true
   - when: pull_request.*, pull_request_review.*
     name: 'Check title'
     validate:
