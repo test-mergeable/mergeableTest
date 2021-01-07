@@ -76,3 +76,23 @@ mergeable:
           skip_merge: true
           oldest_only: true
           single_commit_only: true
+  - when: pull_request.*, pull_request_review.*
+      name: 'Check contents'
+      validate:
+        - do: contents
+          files:
+            pr_diff: true
+            ignore: ['.gitignore']
+          must_include:
+            regex: '@dev'
+            message: 'all file must include documentations'
+          must_exclude:
+            regex: 'secret'
+            message: 'Secrets are not allowed in files'
+          begins_with:
+            match: 'author'
+            message: 'all file must start with author'
+          ends_with:
+            match: 'EOF'
+            message: 'all file must end with keyword EOF'
+
