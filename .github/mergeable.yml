@@ -225,3 +225,22 @@ mergeable:
         ends_with:
           match: '\d{5}'
           message: 'title must end with a 5 digits ID'
+  - when: issues.*
+    name: 'Create Comment if description is empty'
+    validate:
+      - do: description
+        no_empty:
+          enabled: true
+          message: 'milestone cannot be empty'
+    fail:
+      - do: comment
+        payload:
+          body: >
+            Please sure the description is not empty
+  - when: pull_request.opened
+    name: 'Assign author as assignee when pull request open'
+    validate:
+    pass:
+      - do: assign
+        assignees: ['@author']
+
