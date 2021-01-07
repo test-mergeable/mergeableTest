@@ -195,9 +195,9 @@ mergeable:
           count: 1
           message: 'Too many milestone, please reduce them to 1'
   - when: pull_request.*, pull_request_review.*
-      name: 'Check Project'
-      validate:
-        - do: project
-          must_include:
-            regex: '2021'
-            message: 'Must be in a 2021 project'
+    name: 'Check Project'
+    validate:
+      - do: project
+        must_include:
+          regex: '2021'
+          message: 'Must be in a 2021 project'
