@@ -41,3 +41,38 @@ mergeable:
         must_exclude:
           regex: 'head'
           message: 'head branch cannot be baseRef'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check changeset'
+    validate:
+      - do: changeset
+        no_empty:
+          enabled: true
+          message: 'changeset cannot be empty'
+        must_include:
+          regex: 'base'
+          message: 'PR must be against base branch'
+        must_exclude:
+          regex: 'head'
+          message: 'head branch cannot be baseRef'
+        begin_with:
+          match: 'test'
+          message: 'only test files are allowed to be included'
+        ends_with:
+          match: '.js'
+          message: 'only js file are allowed for change'
+        min:
+          count: 1
+          message: 'There must be at least one file changed'
+        max:
+          count: 5
+          message: 'Too many file changes, please reduce them'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check commit'
+    validate:
+      - do: commit
+        message:
+          regex: 'TIX-'
+          message: 'commit must include TIX number'
+          skip_merge: true
+          oldest_only: true
+          single_commit_only: true
