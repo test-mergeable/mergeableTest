@@ -189,3 +189,39 @@ mergeable:
         must_include:
           regex: '2021'
           message: 'Must be in a 2021 project'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check Size'
+    validate:
+      - do: size
+        lines:
+          max:
+            count: 20
+            message: 'PR should include less than 20 line changes max'
+          additions:
+            count: 5
+            message: 'there should not be more than 5 additions per PR'
+          deletions:
+            count: 5
+            message: 'there should not be more than 5 deletions per PR'
+        match: ['first.js']
+        ignore: ['second.js']
+        ignore_comments: true
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check title'
+      validate:
+        - do: title
+          no_empty:
+            enabled: true
+            message: 'milestone cannot be empty'
+          must_include:
+            regex: 'feat|docs'
+            message: 'title must include feat or docs'
+          must_exclude:
+            regex: 'WIP'
+            message: 'title must exclude WIP'
+          begins_with:
+            match: 'TIX'
+            message: 'title must begin with TIX number'
+          ends_with:
+            match: '\d{5}'
+            message: 'title must end with a 5 digits ID'
