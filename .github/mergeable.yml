@@ -54,7 +54,7 @@ mergeable:
         must_exclude:
           regex: 'head'
           message: 'head branch cannot be baseRef'
-        begin_with:
+        begins_with:
           match: 'test'
           message: 'only test files are allowed to be included'
         ends_with:
