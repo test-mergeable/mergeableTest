@@ -251,8 +251,8 @@ mergeable:
           regex: 'close'
     pass:
       - do: close
-  - when: pull_request.*, issues.*
-    name: 'close the issue if there is a label named close'
+  - when: pull_request.*
+    name: 'merge the issue if there is a label named close'
     validate:
       - do: label
         must_include:
