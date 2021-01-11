@@ -10,7 +10,7 @@ mergeable:
               - do: baseRef
                 must_include:
                   regex: 'main'
-              - do: labels
+              - do: label
                 and:
                   - must_include:
                       regex: 'qa passed'
