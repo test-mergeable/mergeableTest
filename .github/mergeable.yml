@@ -17,6 +17,6 @@ mergeable:
                   - must_include:
                       regex: 'develop deployed'
           - do: baseRef
-            must_include:
-              regex: 'not main'
+            must_exclude:
+              regex: 'master'
 
