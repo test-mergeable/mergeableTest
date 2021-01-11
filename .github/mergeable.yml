@@ -1,8 +1,275 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: "check label"
+    name: 'Check Approvals'
+    validate:
+      - do: approvals
+        max:
+          count: 2
+          message: 'Max is 2'
+        min:
+          count: 1
+          message: 'Minimum is 1'
+        required:
+          reviewers: [ 'shineTest', 'shinelay' ]
+          assignees: true
+          requested_reviewers: true
+          owners: true
+          message: 'required approvals not met'
+        block:
+          changes_requested: true
+          message: 'all changes requested must be resolved'
+        limit:
+          teams: ['@test-mergeable/reviewers']
+          owners: true # boolean
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check assignee'
+    validate:
+      - do: assignee
+        max:
+          count: 2
+          message: 'Max is 2'
+        min:
+          count: 1
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check baseRef'
+    validate:
+      - do: baseRef
+        must_include:
+          regex: 'base'
+          message: 'PR must be against base branch'
+        must_exclude:
+          regex: 'head'
+          message: 'head branch cannot be baseRef'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check changeset'
+    validate:
+      - do: changeset
+        no_empty:
+          enabled: true
+          message: 'changeset cannot be empty'
+        must_include:
+          regex: 'base'
+          message: 'PR must be against base branch'
+        must_exclude:
+          regex: 'head'
+          message: 'head branch cannot be baseRef'
+        begins_with:
+          match: 'test'
+          message: 'only test files are allowed to be included'
+        ends_with:
+          match: '.js'
+          message: 'only js file are allowed for change'
+        min:
+          count: 1
+          message: 'There must be at least one file changed'
+        max:
+          count: 5
+          message: 'Too many file changes, please reduce them'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check commit'
+    validate:
+      - do: commit
+        message:
+          regex: 'TIX-'
+          message: 'commit must include TIX number'
+          skip_merge: true
+          oldest_only: true
+          single_commit_only: true
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check contents'
+    validate:
+      - do: contents
+        files:
+          pr_diff: true
+          ignore: ['.gitignore']
+        must_include:
+          regex: '@dev'
+          message: 'all file must include documentations'
+        must_exclude:
+          regex: 'secret'
+          message: 'Secrets are not allowed in files'
+        begins_with:
+          match: 'author'
+          message: 'all file must start with author'
+        ends_with:
+          match: 'EOF'
+          message: 'all file must end with keyword EOF'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check dependent - files'
+    validate:
+      - do: dependent
+        files: ['package.json', 'package-lock.json']
+        message: 'if package.json is changed, package-lock.json must be included as well'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check dependent - changed'
+    validate:
+      - do: dependent
+        changed:
+          file: 'package.json'
+          required: ['package-lock.json', 'changelog.md']
+        message: 'if package.json is changed, package-lock.json and changelog.md must be included as well'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check description'
+    validate:
+      - do: description
+        no_empty:
+          enabled: true
+          message: 'description cannot be empty'
+        must_include:
+          regex: 'Testing'
+          message: 'Testing must be described'
+        must_exclude:
+          regex: 'TODO'
+          message: 'please finish all TODOs'
+        begins_with:
+          match: 'Changes'
+          message: 'All the changes must be listed in description'
+        ends_with:
+          match: 'End of Description'
+          message: 'End of Description must be present'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check headRef'
+    validate:
+      - do: headRef
+        must_include:
+          regex: 'TIX'
+          message: 'head branch name must include TIX number'
+        must_exclude:
+          regex: 'feature'
+          message: 'features must go into a different branch'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check label'
+    validate:
+      - do: label
+        no_empty:
+          enabled: true
+          message: 'label cannot be empty'
+        must_include:
+          regex: 'ready to merge'
+          message: 'PR is not yet ready to merge'
+        must_exclude:
+          regex: 'WIP'
+          message: 'the PR is still labeled as WIP'
+        begins_with:
+          match: 'Effort'
+          message: 'Effort label must be included'
+        ends_with:
+          match: '-js'
+          message: 'label ending with -js must be included'
+        min:
+          count: 1
+          message: 'There must be at least one label attached'
+        max:
+          count: 10
+          message: 'Too many labels, please reduce them'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check Milestone'
+    validate:
+      - do: milestone
+        no_empty:
+          enabled: true
+          message: 'milestone cannot be empty'
+        must_include:
+          regex: '2021'
+          message: 'Must be in a 2021 milestone'
+        must_exclude:
+          regex: '2020'
+          message: 'must not be in 2020 milestone'
+        begins_with:
+          match: 'v11'
+          message: 'must be in v11 milestone'
+        ends_with:
+          match: '.1.3'
+          message: 'must be for .1.3 patch'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check Project'
+    validate:
+      - do: project
+        must_include:
+          regex: '2021'
+          message: 'Must be in a 2021 project'
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check Size'
+    validate:
+      - do: size
+        lines:
+          max:
+            count: 20
+            message: 'PR should include less than 20 line changes max'
+          additions:
+            count: 5
+            message: 'there should not be more than 5 additions per PR'
+          deletions:
+            count: 5
+            message: 'there should not be more than 5 deletions per PR'
+          ignore_comments: true
+        match: ['first.js']
+        ignore: ['second.js']
+  - when: pull_request.*, pull_request_review.*
+    name: 'Check title'
+    validate:
+      - do: title
+        no_empty:
+          enabled: true
+          message: 'milestone cannot be empty'
+        must_include:
+          regex: 'feat|docs'
+          message: 'title must include feat or docs'
+        must_exclude:
+          regex: 'WIP'
+          message: 'title must exclude WIP'
+        begins_with:
+          match: 'TIX'
+          message: 'title must begin with TIX number'
+        ends_with:
+          match: '\d{5}'
+          message: 'title must end with a 5 digits ID'
+  - when: issues.*
+    name: 'Create Comment if description is empty'
+    validate:
+      - do: description
+        no_empty:
+          enabled: true
+          message: 'milestone cannot be empty'
+    fail:
+      - do: comment
+        payload:
+          body: >
+            Please sure the description is not empty
+  - when: pull_request.opened
+    name: 'Assign author as assignee when pull request open'
+    validate: []
+    pass:
+      - do: assign
+        assignees: ['@author']
+  - when: pull_request.*, issues.*
+    name: 'close the issue if there is a label named close'
     validate:
       - do: label
         must_include:
-          regex: merge-on-green
+          regex: 'close'
+    pass:
+      - do: close
+  - when: pull_request.*, issues.*
+    name: 'close the issue if there is a label named close'
+    validate:
+      - do: label
+        must_include:
+          regex: 'merge-on-green'
+    pass:
+      - do: merge
+        merge_method: 'merge'
+  - when: pull_request.opened, issues.opened
+    name: 'add "triage-needed" label when PR is opened'
+    validate: []
+    pass:
+      - do: labels
+        labels: [ 'triage-needed']
+        mode: 'add'
+  - when: pull_request.opened
+    name: 'request shine2lay review when PR is opened'
+    validate: []
+    pass:
+      - do: request_review
+        reviewers: [ 'shineTest' ]
