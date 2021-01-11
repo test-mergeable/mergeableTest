@@ -1,22 +1,12 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: 'Check custom test case'
+    name: 'check labels if in master base branch'
     validate:
-      - do: or
-        validate:
-          - do: and
-            validate:
-              - do: baseRef
-                must_include:
-                  regex: 'master'
-              - do: label
-                and:
-                  - must_include:
-                      regex: 'qa passed'
-                  - must_include:
-                      regex: 'develop deployed'
-          - do: baseRef
-            must_exclude:
-              regex: 'master'
+      - do: approvals
+        required:
+          reviewers: [ 'shineTest' ]
+    fail:
+      - do: checks
+        state: 'in_progress'
 
