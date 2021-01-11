@@ -19,4 +19,3 @@ mergeable:
           - do: baseRef
             must_include:
               regex: 'not main'
-
