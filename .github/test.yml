@@ -9,14 +9,13 @@ mergeable:
             validate:
               - do: baseRef
                 must_include:
-                  regex: 'master'
-              - do: label
+                  regex: 'main'
+              - do: labels
                 and:
                   - must_include:
                       regex: 'qa passed'
                   - must_include:
                       regex: 'develop deployed'
           - do: baseRef
-            must_exclude:
-              regex: 'master'
-
+            must_include:
+              regex: 'not main'
