@@ -273,4 +273,3 @@ mergeable:
     pass:
       - do: request_review
         reviewers: [ 'shineTest' ]
-
