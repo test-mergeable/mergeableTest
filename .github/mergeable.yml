@@ -9,4 +9,5 @@ mergeable:
     fail:
       - do: checks
         state: 'in_progress'
+        title: 'Pending Approval'
 
