@@ -1,7 +1,6 @@
 version: 2
 mergeable:
   - when: pull_request.*, pull_request_review.*
-    name: 'check labels if in master base branch'
     validate:
       - do: approvals
         required:
@@ -9,5 +8,5 @@ mergeable:
     fail:
       - do: checks
         state: 'in_progress'
-        title: 'Pending Approval'
+        title: 'Awaiting Approval'
 
