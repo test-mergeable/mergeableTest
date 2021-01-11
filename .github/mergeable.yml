@@ -260,7 +260,7 @@ mergeable:
     pass:
       - do: merge
         merge_method: 'merge'
-  - when: pull_request.opened
+  - when: pull_request.opened, issues.opened
     name: 'add "triage-needed" label when PR is opened'
     validate: []
     pass:
@@ -272,5 +272,5 @@ mergeable:
     validate: []
     pass:
       - do: request_review
-        reviewers: [ 'shine2lay' ]
+        reviewers: [ 'shineTest' ]
 
