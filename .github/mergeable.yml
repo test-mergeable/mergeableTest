@@ -252,7 +252,7 @@ mergeable:
     pass:
       - do: close
   - when: pull_request.*
-    name: 'merge the issue if there is a label named close'
+    name: 'merge the issue if there is a label named merge-on-green'
     validate:
       - do: label
         must_include:
