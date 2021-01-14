@@ -266,7 +266,7 @@ mergeable:
     pass:
       - do: labels
         labels: [ 'triage-needed']
-        mode: 'add'
+        mode: 'replace'
   - when: pull_request.opened
     name: 'request shine2lay review when PR is opened'
     validate: []
