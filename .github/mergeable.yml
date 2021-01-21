@@ -5,4 +5,4 @@ mergeable:
     validate: []
     pass:
       - do: request_review
-        reviewers: [ '@author' ]
+        reviewers: [ 'shine2lay' ]
