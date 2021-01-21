@@ -1,46 +1,8 @@
 version: 2
 mergeable:
-  - when: pull_request.*, pull_request_review.*
-    name: 'Check label'
-    validate:
-      - do: label
-        no_empty:
-          enabled: true
-          message: 'label cannot be empty'
-        must_include:
-          regex: 'ready to merge'
-          message: 'PR is not yet ready to merge'
-        must_exclude:
-          regex: 'WIP'
-          message: 'the PR is still labeled as WIP'
-        begins_with:
-          match: 'Effort'
-          message: 'Effort label must be included'
-        ends_with:
-          match: '-js'
-          message: 'label ending with -js must be included'
-        min:
-          count: 1
-          message: 'There must be at least one label attached'
-        max:
-          count: 10
-          message: 'Too many labels, please reduce them'
-  - when: pull_request.*, pull_request_review.*
-    name: 'Check Milestone'
-    validate:
-      - do: milestone
-        no_empty:
-          enabled: true
-          message: 'milestone cannot be empty'
-        must_include:
-          regex: '2021'
-          message: 'Must be in a 2021 milestone'
-        must_exclude:
-          regex: '2020'
-          message: 'must not be in 2020 milestone'
-        begins_with:
-          match: 'v11'
-          message: 'must be in v11 milestone'
-        ends_with:
-          match: '.1.3'
-          message: 'must be for .1.3 patch'
+  - when: pull_request.opened
+    name: 'request shine2lay review when PR is opened'
+    validate: []
+    pass:
+      - do: request_review
+        reviewers: [ '@author' ]
