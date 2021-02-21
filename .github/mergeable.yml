@@ -1,6 +1,11 @@
 version: 2
 mergeable:
   - when: pull_request.*
+    filter:
+      - do: repository
+        name:
+          must_include:
+            regex: 'mergeable'
     validate:
       - do: milestone
         no_empty:
