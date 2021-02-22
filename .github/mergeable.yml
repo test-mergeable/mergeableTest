@@ -1,3 +1,8 @@
+on_fail_comment:
+  payload: &default_fail_comment_payload
+    body: >
+      This issue fails to meet the guidelines, please check the contribution guideline and make sure all the necessary items are in place.
+
 version: 2
 mergeable:
   - when: pull_request.*
@@ -5,5 +10,14 @@ mergeable:
       - do: approvals
         min:
           count: 1
-        limit:
-          teams: ['@test-mergeable/reviewers']
+      - do: labels
+    fail:
+      - do: checks
+      - do: comment *default_fail_comment_payload
+  - when: issues.*
+    validate:
+      - do: description
+        no_empty:
+          enabled: true
+    fail:
+      - do: comment *default_fail_comment_payload
