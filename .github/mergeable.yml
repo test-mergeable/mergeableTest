@@ -1,7 +1,8 @@
-on_fail_comment:
-  payload: &default_fail_comment_payload
-    body: >
-      This issue fails to meet the guidelines, please check the contribution guideline and make sure all the necessary items are in place.
+on_fail_comment: &default_fail_comment
+  - do: comment
+    payload:
+      body: >
+        This issue fails to meet the guidelines, please check the contribution guideline and make sure all the necessary items are in place.
 
 version: 2
 mergeable:
@@ -12,12 +13,11 @@ mergeable:
           count: 1
       - do: labels
     fail:
-      - do: checks
-      - do: comment *default_fail_comment_payload
+      <<: *default_fail_comment
+      - do: check
   - when: issues.*
     validate:
       - do: description
         no_empty:
           enabled: true
-    fail:
-      - do: comment *default_fail_comment_payload
+    fail: *default_fail_comment
