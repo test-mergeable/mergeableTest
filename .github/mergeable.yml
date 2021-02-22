@@ -13,7 +13,7 @@ mergeable:
           count: 1
       - do: labels
     fail:
-      <<: *default_fail_comment
+      - <<: *default_fail_comment
       - do: check
   - when: issues.*
     validate:
