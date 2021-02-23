@@ -1,23 +1,7 @@
-on_fail_comment: &default_fail_comment
-  - do: comment
-    payload:
-      body: >
-        This issue fails to meet the guidelines, please check the contribution guideline and make sure all the necessary items are in place.
-
 version: 2
 mergeable:
   - when: pull_request.*
     validate:
-      - do: approvals
-        min:
-          count: 1
-      - do: labels
-    fail:
-      - <<: *default_fail_comment
-      - do: check
-  - when: issues.*
-    validate:
-      - do: description
-        no_empty:
-          enabled: true
-    fail: *default_fail_comment
+      - do: time
+        age:
+          seconds: 300
