@@ -4,6 +4,6 @@ mergeable:
     filter:
       - do: payload
     validate:
-      - do: labels
+      - do: label
         must_exlude:
           regex: 'WIP'
