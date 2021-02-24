@@ -1,6 +1,8 @@
 version: 2
 mergeable:
   - when: pull_request.*
+    filter:
+      - do: payload
     validate:
       - do: time
         age:
