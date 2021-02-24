@@ -4,6 +4,6 @@ mergeable:
     filter:
       - do: payload
     validate:
-      - do: time
-        age:
-          seconds: 300
+      - do: labels
+        must_exlude:
+          regex: 'WIP'
