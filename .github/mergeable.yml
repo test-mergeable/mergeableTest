@@ -3,6 +3,10 @@ mergeable:
   - when: pull_request_review.*
     filter:
       - do: payload
+        review:
+          state:
+            must_include:
+              regex: 'changes_requested'
     validate:
       - do: label
         must_exlude:
