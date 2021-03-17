@@ -1,17 +1,8 @@
 version: 2
 mergeable:
   - when: pull_request_review.*
-    filter:
-      - do: payload
-        review:
-          state:
-            must_include:
-              regex: 'changes_requested'
-        pull_request:
-          non_existent_field:
-            must_include:
-              regex: 'test'
     validate:
-      - do: label
-        must_exlude:
-          regex: 'WIP'
+      - do: age
+        created_at:
+          days: 1
+          message: 'PR needs to be at least 1 day old in order to merge'
